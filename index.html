@@ -28,12 +28,24 @@ a:hover{text-decoration:underline}
 
 /* --- Language toggle --- */
 [data-lang="kr"]{display:none}
+[data-lang="tr"]{display:none}
+span[data-lang="en"]{display:inline}
+span[data-lang="kr"]{display:none}
+span[data-lang="tr"]{display:none}
+
 html[lang="ko"] [data-lang="kr"]{display:block}
 html[lang="ko"] [data-lang="en"]{display:none}
+html[lang="ko"] [data-lang="tr"]{display:none}
 html[lang="ko"] span[data-lang="kr"]{display:inline}
 html[lang="ko"] span[data-lang="en"]{display:none}
-span[data-lang="kr"]{display:none}
-span[data-lang="en"]{display:inline}
+html[lang="ko"] span[data-lang="tr"]{display:none}
+
+html[lang="tr"] [data-lang="tr"]{display:block}
+html[lang="tr"] [data-lang="en"]{display:none}
+html[lang="tr"] [data-lang="kr"]{display:none}
+html[lang="tr"] span[data-lang="tr"]{display:inline}
+html[lang="tr"] span[data-lang="en"]{display:none}
+html[lang="tr"] span[data-lang="kr"]{display:none}
 
 /* --- Hero --- */
 .hero{
@@ -222,11 +234,17 @@ span[data-lang="en"]{display:inline}
     <p class="tagline" data-lang="kr">
       금융기관을 위한 보이스피싱 생태계 인텔리전스
     </p>
+    <p class="tagline" data-lang="tr">
+      Finans kuruluşları için dolandırıcılık ekosistemi istihbaratı
+    </p>
     <p class="tagline" style="opacity:.72;font-size:.95rem;margin-top:-16px" data-lang="en">
       Independent threat intelligence service, founded 2026.
     </p>
     <p class="tagline" style="opacity:.72;font-size:.95rem;margin-top:-16px" data-lang="kr">
       2026년 설립된 독립 위협 인텔리전스 서비스.
+    </p>
+    <p class="tagline" style="opacity:.72;font-size:.95rem;margin-top:-16px" data-lang="tr">
+      2026 yılında kurulan bağımsız tehdit istihbaratı hizmeti.
     </p>
   </div>
 </section>
@@ -237,11 +255,13 @@ span[data-lang="en"]{display:inline}
     <h2 class="section-title">
       <span data-lang="en">What We Do</span>
       <span data-lang="kr">서비스 소개</span>
+      <span data-lang="tr">Hizmetlerimiz</span>
     </h2>
     <div class="accent-bar"></div>
     <p class="section-subtitle">
       <span data-lang="en">Continuous monitoring of fraud infrastructure so you can act before losses occur</span>
       <span data-lang="kr">피해 발생 전 선제 대응을 위한 사기 인프라 상시 모니터링</span>
+      <span data-lang="tr">Kayıplar oluşmadan harekete geçmeniz için dolandırıcılık altyapısının sürekli izlenmesi</span>
     </p>
     <div class="cards">
       <div class="card">
@@ -249,10 +269,12 @@ span[data-lang="en"]{display:inline}
         <h3>
           <span data-lang="en">Ecosystem Monitoring</span>
           <span data-lang="kr">생태계 모니터링</span>
+          <span data-lang="tr">Ekosistem İzleme</span>
         </h3>
         <p>
           <span data-lang="en">Real-time tracking of vishing networks across Telegram channels, mapping operational structures and supply chains.</span>
           <span data-lang="kr">텔레그램 채널 전반의 보이스피싱 네트워크 실시간 추적, 운영 구조 및 공급망 매핑.</span>
+          <span data-lang="tr">Telegram kanalları genelinde sesli dolandırıcılık ağlarının gerçek zamanlı takibi, operasyonel yapıların ve tedarik zincirlerinin haritalandırılması.</span>
         </p>
       </div>
       <div class="card">
@@ -260,10 +282,12 @@ span[data-lang="en"]{display:inline}
         <h3>
           <span data-lang="en">Mule Account Detection</span>
           <span data-lang="kr">대포통장 탐지</span>
+          <span data-lang="tr">Sahte Hesap Tespiti</span>
         </h3>
         <p>
           <span data-lang="en">Identification of financial account numbers, USDT addresses, and phone numbers actively advertised for fraud operations.</span>
           <span data-lang="kr">사기 조직이 활발히 광고 중인 금융 계좌번호, USDT 주소, 전화번호 식별.</span>
+          <span data-lang="tr">Dolandırıcılık operasyonları için aktif olarak ilan edilen finansal hesap numaraları, USDT adresleri ve telefon numaralarının tespiti.</span>
         </p>
       </div>
       <div class="card">
@@ -271,10 +295,12 @@ span[data-lang="en"]{display:inline}
         <h3>
           <span data-lang="en">Cross-Market Correlation</span>
           <span data-lang="kr">크로스마켓 상관분석</span>
+          <span data-lang="tr">Pazarlar Arası Korelasyon</span>
         </h3>
         <p>
           <span data-lang="en">Linking fraud operations across jurisdictions to reveal shared infrastructure and operator overlap between markets.</span>
           <span data-lang="kr">관할권 간 사기 조직 연결을 통한 공유 인프라 및 운영자 중복 파악.</span>
+          <span data-lang="tr">Paylaşılan altyapıyı ve operatör örtüşmesini ortaya çıkarmak için yargı alanları genelinde dolandırıcılık operasyonlarının ilişkilendirilmesi.</span>
         </p>
       </div>
       <div class="card">
@@ -282,10 +308,12 @@ span[data-lang="en"]{display:inline}
         <h3>
           <span data-lang="en">Evidence-Grade Reporting</span>
           <span data-lang="kr">증거 수준 보고서</span>
+          <span data-lang="tr">Kanıt Düzeyinde Raporlama</span>
         </h3>
         <p>
           <span data-lang="en">Structured intelligence products with confidence scoring, audit trails, and legal reference mappings for each finding.</span>
           <span data-lang="kr">각 발견 사항에 대한 신뢰도 점수, 감사 추적, 법적 참조를 포함한 구조화된 인텔리전스 제품.</span>
+          <span data-lang="tr">Her bulgu için güvenilirlik puanlaması, denetim izleri ve yasal referans eşleştirmelerini içeren yapılandırılmış istihbarat ürünleri.</span>
         </p>
       </div>
     </div>
@@ -298,31 +326,37 @@ span[data-lang="en"]{display:inline}
     <h2 class="section-title">
       <span data-lang="en">Coverage</span>
       <span data-lang="kr">커버리지</span>
+      <span data-lang="tr">Kapsam</span>
     </h2>
     <div class="accent-bar"></div>
     <p class="section-subtitle">
       <span data-lang="en">Active intelligence collection across multiple fraud markets</span>
       <span data-lang="kr">복수의 사기 시장에 대한 적극적 인텔리전스 수집</span>
+      <span data-lang="tr">Birden fazla dolandırıcılık pazarında aktif istihbarat toplama</span>
     </p>
     <div class="coverage-grid">
       <div class="coverage-item">
         <h3>
           <span data-lang="en">South Korea</span>
           <span data-lang="kr">대한민국</span>
+          <span data-lang="tr">Güney Kore</span>
         </h3>
         <p>
           <span data-lang="en">Vishing, mule account trading, SIM fraud, cryptocurrency laundering. Cross-border operations spanning SEA.</span>
           <span data-lang="kr">보이스피싱, 대포통장 거래, 유심 사기, 암호화폐 세탁. 동남아시아에 걸친 국경 간 조직.</span>
+          <span data-lang="tr">Sesli dolandırıcılık, sahte hesap ticareti, SIM dolandırıcılığı, kripto para aklama. Güneydoğu Asya'yı kapsayan sınır ötesi operasyonlar.</span>
         </p>
       </div>
       <div class="coverage-item">
         <h3>
           <span data-lang="en">Turkey</span>
           <span data-lang="kr">튀르키예</span>
+          <span data-lang="tr">Türkiye</span>
         </h3>
         <p>
           <span data-lang="en">Voice phishing, bank fraud, identity theft, and mule recruitment networks.</span>
           <span data-lang="kr">보이스피싱, 은행 사기, 신원 도용, 대포통장 모집 네트워크.</span>
+          <span data-lang="tr">Sesli dolandırıcılık, banka dolandırıcılığı, kimlik hırsızlığı ve kurye ağları.</span>
         </p>
       </div>
     </div>
@@ -335,11 +369,13 @@ span[data-lang="en"]{display:inline}
     <h2 class="section-title">
       <span data-lang="en">By The Numbers</span>
       <span data-lang="kr">주요 수치</span>
+      <span data-lang="tr">Rakamlarla</span>
     </h2>
     <div class="accent-bar"></div>
     <p class="section-subtitle">
       <span data-lang="en">Continuously updated from live intelligence collection</span>
       <span data-lang="kr">실시간 인텔리전스 수집으로 지속 업데이트</span>
+      <span data-lang="tr">Canlı istihbarat toplamasından sürekli güncellenir</span>
     </p>
     <div class="stats-grid">
       <div>
@@ -347,6 +383,7 @@ span[data-lang="en"]{display:inline}
         <div class="stat-label">
           <span data-lang="en">Entities Tracked</span>
           <span data-lang="kr">추적 중인 엔티티</span>
+          <span data-lang="tr">Takip Edilen Varlık</span>
         </div>
       </div>
       <div>
@@ -354,6 +391,7 @@ span[data-lang="en"]{display:inline}
         <div class="stat-label">
           <span data-lang="en">Clusters Mapped</span>
           <span data-lang="kr">매핑된 클러스터</span>
+          <span data-lang="tr">Haritalandırılmış Küme</span>
         </div>
       </div>
       <div>
@@ -361,6 +399,7 @@ span[data-lang="en"]{display:inline}
         <div class="stat-label">
           <span data-lang="en">Member Reach Monitored</span>
           <span data-lang="kr">모니터링 중인 회원 도달 범위</span>
+          <span data-lang="tr">İzlenen Üye Erişimi</span>
         </div>
       </div>
     </div>
@@ -373,11 +412,13 @@ span[data-lang="en"]{display:inline}
     <h2 class="section-title">
       <span data-lang="en">Get In Touch</span>
       <span data-lang="kr">문의하기</span>
+      <span data-lang="tr">İletişim</span>
     </h2>
     <div class="accent-bar"></div>
     <p class="section-subtitle">
       <span data-lang="en">We specialize in Korean and Turkish language Telegram ecosystems -- infrastructure your current vendor isn't monitoring.</span>
       <span data-lang="kr">한국어 및 터키어 텔레그램 생태계 전문 -- 기존 벤더가 모니터링하지 않는 인프라입니다.</span>
+      <span data-lang="tr">Korece ve Türkçe Telegram ekosistemleri konusunda uzmanız -- mevcut tedarikçinizin izlemediği altyapı.</span>
     </p>
     <a href="mailto:utku@opsightintel.com" class="contact-email">utku@opsightintel.com</a>
   </div>
@@ -387,20 +428,21 @@ span[data-lang="en"]{display:inline}
 <footer class="footer">
   <span data-lang="en">&copy; 2026 Opsight Intelligence. All rights reserved.</span>
   <span data-lang="kr">&copy; 2026 Opsight Intelligence. All rights reserved.</span>
+  <span data-lang="tr">&copy; 2026 Opsight Intelligence. Tüm hakları saklıdır.</span>
 </footer>
 
 <script>
 (function(){
   var toggle=document.getElementById("langToggle");
   var html=document.documentElement;
+  var cycle=["en","ko","tr"];
+  var labels={"en":"KR","ko":"TR","tr":"EN"};
   toggle.addEventListener("click",function(){
-    if(html.lang==="en"){
-      html.lang="ko";
-      toggle.textContent="EN";
-    }else{
-      html.lang="en";
-      toggle.textContent="KR";
-    }
+    var cur=html.lang||"en";
+    var idx=cycle.indexOf(cur);
+    var next=cycle[(idx+1)%cycle.length];
+    html.lang=next;
+    toggle.textContent=labels[next];
   });
 })();
 </script>

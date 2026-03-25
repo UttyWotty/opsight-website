@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opsight Intelligence - Manufacturing Intelligence</title>
+<meta name="description" content="Operational intelligence for auto parts suppliers and OEMs. OEE dashboards, cycle time analysis, and custom KPI reporting built on your existing data.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#1e3a5f;
+  --primary-light:#2d5a87;
+  --mfg-accent:#e07b39;
+  --mfg-accent-dark:#c96a2e;
+  --text:#212529;
+  --text-secondary:#555;
+  --bg:#f8f9fa;
+  --card-bg:#fff;
+  --border:#e9ecef;
+}
+body{
+  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* --- Nav bar --- */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(30,58,95,.97);
+  backdrop-filter:blur(6px);
+  padding:0 24px;
+  display:flex;justify-content:center;gap:32px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+.nav a{
+  color:rgba(255,255,255,.8);
+  font-size:.9rem;font-weight:600;
+  padding:14px 0;
+  border-bottom:2px solid transparent;
+  transition:color .2s,border-color .2s;
+  text-decoration:none;
+}
+.nav a:hover,.nav a.active{color:#fff;border-bottom-color:#fff;text-decoration:none}
+
+/* --- Hero --- */
+.hero{
+  background:linear-gradient(135deg,#2c2c2c 0%,#444 100%);
+  color:#fff;
+  padding:80px 24px 72px;
+  text-align:center;
+}
+.hero-inner{max-width:800px;margin:0 auto}
+.brand{
+  font-size:2.4rem;
+  font-weight:700;
+  letter-spacing:.22em;
+  margin-bottom:12px;
+}
+.brand-accent{color:var(--mfg-accent)}
+.tagline{
+  font-size:1.15rem;
+  font-weight:400;
+  opacity:.88;
+  max-width:540px;
+  margin:0 auto 16px;
+  line-height:1.5;
+}
+
+/* --- Section shared --- */
+.section{padding:64px 24px}
+.section-inner{max-width:960px;margin:0 auto}
+.section-title{
+  font-size:1.5rem;
+  font-weight:700;
+  color:var(--mfg-accent);
+  margin-bottom:8px;
+  text-align:center;
+}
+.section-subtitle{
+  color:var(--text-secondary);
+  text-align:center;
+  margin-bottom:40px;
+  font-size:.95rem;
+}
+
+/* --- Accent bar --- */
+.accent-bar{
+  height:3px;
+  background:var(--mfg-accent);
+  width:60px;
+  margin:0 auto 24px;
+  border-radius:2px;
+}
+
+/* --- Cards --- */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:24px;
+}
+.card{
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-left:3px solid var(--mfg-accent);
+  border-radius:8px;
+  padding:28px 24px;
+  transition:box-shadow .2s;
+}
+.card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.card-icon{
+  font-size:1.6rem;
+  margin-bottom:12px;
+  display:block;
+  color:var(--mfg-accent);
+}
+.card h3{
+  font-size:1.05rem;
+  font-weight:600;
+  margin-bottom:8px;
+  color:#1a1a1a;
+}
+.card p{
+  font-size:.9rem;
+  color:var(--text-secondary);
+  line-height:1.55;
+}
+
+/* --- Coverage --- */
+.coverage-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+}
+.coverage-item{
+  background:var(--card-bg);
+  border:1px solid #ddd;
+  border-radius:8px;
+  padding:24px;
+  text-align:center;
+}
+.coverage-item h3{
+  font-size:1.1rem;
+  color:var(--mfg-accent);
+  margin-bottom:6px;
+}
+.coverage-item p{
+  color:var(--text-secondary);
+  font-size:.9rem;
+}
+
+/* --- Tagline --- */
+.mfg-tagline{
+  max-width:640px;margin:32px auto 0;
+  text-align:center;font-size:1.05rem;
+  color:var(--text-secondary);line-height:1.6;
+  font-style:italic;
+}
+
+/* --- Demo links --- */
+.demo-links{
+  display:flex;flex-wrap:wrap;gap:12px;
+  justify-content:center;margin-top:24px;
+}
+.demo-link{
+  display:inline-block;
+  background:#fff;border:1px solid var(--mfg-accent);color:var(--mfg-accent);
+  padding:8px 20px;border-radius:6px;
+  font-size:.88rem;font-weight:600;
+  transition:background .2s,color .2s;
+  text-decoration:none;
+}
+.demo-link:hover{background:var(--mfg-accent);color:#fff;text-decoration:none}
+
+/* --- CTA --- */
+.mfg-cta{
+  display:inline-block;margin-top:24px;
+  background:var(--mfg-accent);color:#fff;
+  padding:12px 32px;border-radius:6px;
+  font-size:1rem;font-weight:500;
+  transition:background .2s;
+}
+.mfg-cta:hover{background:var(--mfg-accent-dark);text-decoration:none}
+
+/* --- Footer --- */
+.footer{
+  text-align:center;
+  padding:32px 24px;
+  color:#999;
+  font-size:.82rem;
+  border-top:1px solid var(--border);
+}
+
+/* --- Responsive --- */
+@media(max-width:600px){
+  .hero{padding:56px 20px 48px}
+  .brand{font-size:1.6rem;letter-spacing:.15em}
+  .tagline{font-size:1rem}
+  .section{padding:48px 20px}
+  .nav{gap:24px}
+  .demo-links{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav">
+  <a href="index.html">Intelligence</a>
+  <a href="manufacturing.html" class="active">Manufacturing</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="brand">OPSIGHT <span class="brand-accent">MANUFACTURING</span></div>
+    <p class="tagline">
+      Operational visibility for auto parts suppliers and OEMs
+    </p>
+  </div>
+</section>
+
+<!-- What We Do -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">What We Do</h2>
+    <div class="accent-bar"></div>
+    <p class="section-subtitle">Your production data, transformed into actionable intelligence</p>
+    <div class="cards">
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x25C9;</span>
+        <h3>OEE Dashboard</h3>
+        <p>Real-time equipment effectiveness tracking across lines and shifts.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x25CE;</span>
+        <h3>Cycle Time Analysis</h3>
+        <p>Production bottleneck identification with shift-level granularity.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x25D0;</span>
+        <h3>Custom KPI Dashboards</h3>
+        <p>Built on your existing data -- no new systems required.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x25C7;</span>
+        <h3>ROI Reporting</h3>
+        <p>Cost reduction and efficiency metrics with clear before/after evidence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Coverage -->
+<section class="section" style="background:var(--card-bg)">
+  <div class="section-inner">
+    <h2 class="section-title">Coverage</h2>
+    <div class="accent-bar"></div>
+    <div class="coverage-grid">
+      <div class="coverage-item">
+        <h3>Auto Parts Suppliers</h3>
+        <p>Tier 2/3 manufacturers supplying Korean OEMs</p>
+      </div>
+      <div class="coverage-item">
+        <h3>Korean SMEs</h3>
+        <p>Small and medium manufacturers ready for data-driven operations</p>
+      </div>
+      <div class="coverage-item">
+        <h3>Production Lines</h3>
+        <p>Injection molding, stamping, assembly, and finishing operations</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tagline + Demos -->
+<section class="section" style="text-align:center">
+  <div class="section-inner">
+    <p class="mfg-tagline">
+      "Your Excel data, turned into live operational intelligence.<br>
+      No new systems. No IT project. Just clarity."
+    </p>
+
+    <h2 class="section-title" style="margin-top:48px">Live Demo Dashboards</h2>
+    <div class="accent-bar"></div>
+    <p class="section-subtitle">Interactive samples built with real production data patterns</p>
+
+    <div class="demo-links">
+      <a href="demodashboard/capacity_dashboard.html" class="demo-link" target="_blank">Capacity Dashboard</a>
+      <a href="demodashboard/ct_efficiency_dashboard.html" class="demo-link" target="_blank">CT Efficiency Dashboard</a>
+      <a href="demodashboard/runrate_dashboard.html" class="demo-link" target="_blank">Run Rate Dashboard</a>
+    </div>
+
+    <div style="margin-top:40px">
+      <a href="mailto:utku@opsightintel.com" class="mfg-cta">utku@opsightintel.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  &copy; 2026 Opsight Intelligence. All rights reserved.
+</footer>
+
+</body>
+</html>

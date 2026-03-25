@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Opsight Intelligence</title>
-<meta name="description" content="OpsightIntel: fraud ecosystem intelligence for financial institutions and manufacturing operational intelligence for auto parts suppliers.">
+<title>Opsight Intelligence - Fraud Ecosystem Intelligence</title>
+<meta name="description" content="OpsightIntel provides fraud ecosystem intelligence for financial institutions. Real-time monitoring of vishing networks, mule account detection, and evidence-grade reporting.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -47,6 +47,25 @@ html[lang="tr"] [data-lang="kr"]{display:none}
 html[lang="tr"] span[data-lang="tr"]{display:inline}
 html[lang="tr"] span[data-lang="en"]{display:none}
 html[lang="tr"] span[data-lang="kr"]{display:none}
+
+/* --- Nav bar --- */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(30,58,95,.97);
+  backdrop-filter:blur(6px);
+  padding:0 24px;
+  display:flex;justify-content:center;gap:32px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+.nav a{
+  color:rgba(255,255,255,.8);
+  font-size:.9rem;font-weight:600;
+  padding:14px 0;
+  border-bottom:2px solid transparent;
+  transition:color .2s,border-color .2s;
+  text-decoration:none;
+}
+.nav a:hover,.nav a.active{color:#fff;border-bottom-color:#fff;text-decoration:none}
 
 /* --- Hero --- */
 .hero{
@@ -202,64 +221,6 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
   border-top:1px solid var(--border);
 }
 
-/* --- Nav bar --- */
-.nav{
-  position:sticky;top:0;z-index:100;
-  background:rgba(30,58,95,.97);
-  backdrop-filter:blur(6px);
-  padding:0 24px;
-  display:flex;justify-content:center;gap:32px;
-  border-bottom:1px solid rgba(255,255,255,.1);
-}
-.nav a{
-  color:rgba(255,255,255,.8);
-  font-size:.9rem;font-weight:600;
-  padding:14px 0;
-  border-bottom:2px solid transparent;
-  transition:color .2s,border-color .2s;
-  text-decoration:none;
-}
-.nav a:hover,.nav a.active{color:#fff;border-bottom-color:#fff;text-decoration:none}
-
-/* --- Manufacturing section --- */
-#manufacturing{background:#f8f9fa;color:#1a1a1a;scroll-margin-top:48px}
-#intelligence{scroll-margin-top:48px}
-#manufacturing .section-title{color:#e07b39}
-#manufacturing .accent-bar{background:#e07b39}
-#manufacturing .section-subtitle{color:#555}
-#manufacturing .card{border-left:3px solid #e07b39}
-#manufacturing .card h3{color:#1a1a1a}
-#manufacturing .card-icon{color:#e07b39}
-#manufacturing .coverage-item{border:1px solid #ddd}
-#manufacturing .coverage-item h3{color:#e07b39}
-.mfg-tagline{
-  max-width:640px;margin:32px auto 0;
-  text-align:center;font-size:1.05rem;
-  color:#555;line-height:1.6;
-  font-style:italic;
-}
-.mfg-cta{
-  display:inline-block;margin-top:24px;
-  background:#e07b39;color:#fff;
-  padding:12px 32px;border-radius:6px;
-  font-size:1rem;font-weight:500;
-  transition:background .2s;
-}
-.mfg-cta:hover{background:#c96a2e;text-decoration:none}
-.demo-links{
-  display:flex;flex-wrap:wrap;gap:12px;
-  justify-content:center;margin-top:24px;
-}
-.demo-link{
-  display:inline-block;
-  background:#fff;border:1px solid #e07b39;color:#e07b39;
-  padding:8px 20px;border-radius:6px;
-  font-size:.88rem;font-weight:600;
-  transition:background .2s,color .2s;
-  text-decoration:none;
-}
-.demo-link:hover{background:#e07b39;color:#fff;text-decoration:none}
-
 /* --- Accent bar --- */
 .accent-bar{
   height:3px;
@@ -278,7 +239,6 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
   .stat-number{font-size:1.7rem}
   .lang-toggle{top:12px;right:12px;padding:5px 10px;font-size:.8rem}
   .nav{gap:24px}
-  .demo-links{flex-direction:column;align-items:center}
 }
 </style>
 </head>
@@ -286,12 +246,12 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
 
 <!-- Nav -->
 <nav class="nav">
-  <a href="#intelligence">Intelligence</a>
-  <a href="#manufacturing">Manufacturing</a>
+  <a href="index.html" class="active">Intelligence</a>
+  <a href="manufacturing.html">Manufacturing</a>
 </nav>
 
 <!-- Hero -->
-<section class="hero" id="intelligence">
+<section class="hero">
   <button class="lang-toggle" id="langToggle" aria-label="Toggle language">KR</button>
   <div class="hero-inner">
     <div class="brand">OPSIGHT INTELLIGENCE</div>
@@ -528,63 +488,6 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
           <span data-lang="kr">활성 시장</span>
           <span data-lang="tr">Aktif Pazar</span>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Manufacturing -->
-<section class="section" id="manufacturing">
-  <div class="section-inner">
-    <h2 class="section-title">Manufacturing Intelligence</h2>
-    <div class="accent-bar"></div>
-    <p class="section-subtitle">Operational visibility for auto parts suppliers and OEMs</p>
-
-    <h3 style="text-align:center;font-size:1.15rem;font-weight:600;color:#1a1a1a;margin-bottom:24px">What We Do</h3>
-    <div class="cards">
-      <div class="card">
-        <span class="card-icon" aria-hidden="true">&#x25C9;</span>
-        <h3>OEE Dashboard</h3>
-        <p>Real-time equipment effectiveness tracking across lines and shifts.</p>
-      </div>
-      <div class="card">
-        <span class="card-icon" aria-hidden="true">&#x25CE;</span>
-        <h3>Cycle Time Analysis</h3>
-        <p>Production bottleneck identification with shift-level granularity.</p>
-      </div>
-      <div class="card">
-        <span class="card-icon" aria-hidden="true">&#x25D0;</span>
-        <h3>Custom KPI Dashboards</h3>
-        <p>Built on your existing data -- no new systems required.</p>
-      </div>
-      <div class="card">
-        <span class="card-icon" aria-hidden="true">&#x25C7;</span>
-        <h3>ROI Reporting</h3>
-        <p>Cost reduction and efficiency metrics with clear before/after evidence.</p>
-      </div>
-    </div>
-
-    <div class="coverage-grid" style="margin-top:40px">
-      <div class="coverage-item">
-        <h3>Coverage</h3>
-        <p>Auto parts suppliers | Korean SMEs | Tier 2/3 manufacturers</p>
-      </div>
-    </div>
-
-    <div style="text-align:center">
-      <p class="mfg-tagline">
-        "Your Excel data, turned into live operational intelligence.<br>
-        No new systems. No IT project. Just clarity."
-      </p>
-
-      <div class="demo-links">
-        <a href="demodashboard/capacity_dashboard.html" class="demo-link" target="_blank">Capacity Dashboard</a>
-        <a href="demodashboard/ct_efficiency_dashboard.html" class="demo-link" target="_blank">CT Efficiency Dashboard</a>
-        <a href="demodashboard/runrate_dashboard.html" class="demo-link" target="_blank">Run Rate Dashboard</a>
-      </div>
-
-      <div style="margin-top:24px">
-        <a href="mailto:utku@opsightintel.com" class="mfg-cta">utku@opsightintel.com</a>
       </div>
     </div>
   </div>

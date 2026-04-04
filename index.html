@@ -3,15 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Opsight Intelligence - Fraud Ecosystem Intelligence</title>
-<meta name="description" content="OpsightIntel provides fraud ecosystem intelligence for financial institutions. Real-time monitoring of vishing networks, mule account detection, and evidence-grade reporting.">
+<title>OpSight Intelligence</title>
+<meta name="description" content="OpSight Intelligence provides specialized intelligence services: fraud ecosystem monitoring, manufacturing operational visibility, and AI governance intelligence.">
+<meta name="keywords" content="intelligence services, fraud intelligence, manufacturing analytics, AI governance, OSINT, threat intelligence">
+<meta name="author" content="OpSight Intelligence">
+<meta property="og:title" content="OpSight Intelligence">
+<meta property="og:description" content="Specialized intelligence services for fraud ecosystems, manufacturing operations, and AI governance.">
+<meta property="og:url" content="https://opsightintel.com/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OpSight Intelligence">
+<meta name="twitter:description" content="Specialized intelligence services for fraud ecosystems, manufacturing operations, and AI governance.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
 :root{
   --primary:#1e3a5f;
   --primary-light:#2d5a87;
-  --accent:#c62828;
   --text:#212529;
   --text-secondary:#6c757d;
   --bg:#f8f9fa;
@@ -23,32 +30,14 @@ body{
   background:var(--bg);
   color:var(--text);
   line-height:1.6;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 a{color:var(--primary);text-decoration:none}
 a:hover{text-decoration:underline}
 
-/* --- Language toggle --- */
-[data-lang="kr"]{display:none}
-[data-lang="tr"]{display:none}
-span[data-lang="en"]{display:inline}
-span[data-lang="kr"]{display:none}
-span[data-lang="tr"]{display:none}
-
-html[lang="ko"] [data-lang="kr"]{display:block}
-html[lang="ko"] [data-lang="en"]{display:none}
-html[lang="ko"] [data-lang="tr"]{display:none}
-html[lang="ko"] span[data-lang="kr"]{display:inline}
-html[lang="ko"] span[data-lang="en"]{display:none}
-html[lang="ko"] span[data-lang="tr"]{display:none}
-
-html[lang="tr"] [data-lang="tr"]{display:block}
-html[lang="tr"] [data-lang="en"]{display:none}
-html[lang="tr"] [data-lang="kr"]{display:none}
-html[lang="tr"] span[data-lang="tr"]{display:inline}
-html[lang="tr"] span[data-lang="en"]{display:none}
-html[lang="tr"] span[data-lang="kr"]{display:none}
-
-/* --- Nav bar --- */
+/* --- Nav --- */
 .nav{
   position:sticky;top:0;z-index:100;
   background:rgba(30,58,95,.97);
@@ -71,146 +60,108 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
 .hero{
   background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 100%);
   color:#fff;
-  padding:80px 24px 72px;
+  padding:80px 24px 64px;
   text-align:center;
-  position:relative;
 }
-.hero-inner{max-width:800px;margin:0 auto}
+.hero-inner{max-width:700px;margin:0 auto}
 .brand{
-  font-size:2.4rem;
+  font-size:2.6rem;
   font-weight:700;
   letter-spacing:.22em;
-  margin-bottom:12px;
+  margin-bottom:16px;
 }
-.tagline{
+.subtitle{
   font-size:1.15rem;
-  font-weight:400;
-  opacity:.88;
-  max-width:540px;
-  margin:0 auto 32px;
+  opacity:.85;
+  max-width:500px;
+  margin:0 auto;
   line-height:1.5;
 }
-.lang-toggle{
-  position:absolute;
-  top:20px;
-  right:24px;
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.3);
-  color:#fff;
-  padding:6px 14px;
-  border-radius:4px;
-  cursor:pointer;
-  font-size:.85rem;
-  font-family:inherit;
-  transition:background .2s;
-}
-.lang-toggle:hover{background:rgba(255,255,255,.25)}
 
-/* --- Section shared --- */
-.section{padding:64px 24px}
-.section-inner{max-width:960px;margin:0 auto}
-.section-title{
-  font-size:1.5rem;
-  font-weight:700;
-  color:var(--primary);
-  margin-bottom:8px;
-  text-align:center;
+/* --- Services --- */
+.services{
+  flex:1;
+  padding:64px 24px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
 }
-.section-subtitle{
+.services-inner{
+  max-width:960px;
+  width:100%;
+}
+.services-heading{
+  text-align:center;
+  font-size:1.3rem;
+  font-weight:600;
   color:var(--text-secondary);
-  text-align:center;
   margin-bottom:40px;
-  font-size:.95rem;
+  letter-spacing:.04em;
 }
-
-/* --- Capabilities --- */
-.cards{
+.service-cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:24px;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
 }
-.card{
+.service-card{
   background:var(--card-bg);
   border:1px solid var(--border);
-  border-radius:8px;
-  padding:28px 24px;
-  transition:box-shadow .2s;
+  border-radius:10px;
+  padding:36px 28px 32px;
+  text-align:center;
+  transition:box-shadow .2s,transform .2s;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
-.card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
-.card-icon{
-  font-size:1.6rem;
-  margin-bottom:12px;
+.service-card:hover{
+  box-shadow:0 6px 24px rgba(0,0,0,.1);
+  transform:translateY(-2px);
+}
+.service-card.clickable{cursor:pointer}
+.service-icon{
+  font-size:2rem;
+  margin-bottom:16px;
   display:block;
+  width:56px;height:56px;
+  line-height:56px;
+  border-radius:50%;
+  background:var(--primary);
+  color:#fff;
 }
-.card h3{
-  font-size:1.05rem;
-  font-weight:600;
-  margin-bottom:8px;
+.service-card h3{
+  font-size:1.15rem;
+  font-weight:700;
   color:var(--primary);
+  margin-bottom:10px;
 }
-.card p{
+.service-card p{
   font-size:.9rem;
   color:var(--text-secondary);
   line-height:1.55;
+  margin-bottom:20px;
+  flex:1;
 }
-
-/* --- Coverage --- */
-.coverage-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:24px;
-}
-.coverage-item{
-  background:var(--card-bg);
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:24px;
-  text-align:center;
-}
-.coverage-item h3{
-  font-size:1.1rem;
-  color:var(--primary);
-  margin-bottom:6px;
-}
-.coverage-item p{
-  color:var(--text-secondary);
-  font-size:.9rem;
-}
-
-/* --- Stats --- */
-.stats-section{background:var(--primary);color:#fff}
-.stats-section .section-title{color:#fff}
-.stats-section .section-subtitle{color:rgba(255,255,255,.7)}
-.stats-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:32px;
-  text-align:center;
-}
-.stat-number{
-  font-size:2.2rem;
-  font-weight:700;
-  margin-bottom:4px;
-}
-.stat-label{
-  font-size:.9rem;
-  opacity:.8;
-}
-
-/* --- Contact --- */
-.contact-section{text-align:center}
-.contact-email{
+.service-link{
   display:inline-block;
-  margin-top:16px;
   background:var(--primary);
   color:#fff;
-  padding:12px 32px;
-  border-radius:6px;
-  font-size:1rem;
-  font-weight:500;
+  padding:9px 24px;
+  border-radius:5px;
+  font-size:.88rem;
+  font-weight:600;
   transition:background .2s;
 }
-.contact-email:hover{background:var(--primary-light);text-decoration:none}
+.service-link:hover{background:var(--primary-light);text-decoration:none}
+.badge-soon{
+  display:inline-block;
+  background:#e0e0e0;
+  color:#777;
+  padding:9px 24px;
+  border-radius:5px;
+  font-size:.88rem;
+  font-weight:600;
+}
 
 /* --- Footer --- */
 .footer{
@@ -221,330 +172,65 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
   border-top:1px solid var(--border);
 }
 
-/* --- Accent bar --- */
-.accent-bar{
-  height:3px;
-  background:var(--accent);
-  width:60px;
-  margin:0 auto 24px;
-  border-radius:2px;
-}
-
 /* --- Responsive --- */
-@media(max-width:600px){
+@media(max-width:720px){
+  .service-cards{grid-template-columns:1fr}
   .hero{padding:56px 20px 48px}
-  .brand{font-size:1.6rem;letter-spacing:.15em}
-  .tagline{font-size:1rem}
-  .section{padding:48px 20px}
-  .stat-number{font-size:1.7rem}
-  .lang-toggle{top:12px;right:12px;padding:5px 10px;font-size:.8rem}
-  .nav{gap:24px}
+  .brand{font-size:1.7rem;letter-spacing:.15em}
+  .subtitle{font-size:1rem}
+  .services{padding:48px 20px}
+  .nav{gap:20px}
 }
 </style>
 </head>
 <body>
 
-<!-- Nav -->
 <nav class="nav">
-  <a href="index.html" class="active">Intelligence</a>
+  <a href="index.html" class="active">Home</a>
+  <a href="intelligence.html">Fraud Intelligence</a>
   <a href="manufacturing.html">Manufacturing</a>
 </nav>
 
-<!-- Hero -->
 <section class="hero">
-  <button class="lang-toggle" id="langToggle" aria-label="Toggle language">KR</button>
   <div class="hero-inner">
     <div class="brand">OPSIGHT INTELLIGENCE</div>
-    <p class="tagline" data-lang="en">
-      Fraud ecosystem intelligence for financial institutions
-    </p>
-    <p class="tagline" data-lang="kr">
-      금융기관을 위한 보이스피싱 생태계 인텔리전스
-    </p>
-    <p class="tagline" data-lang="tr">
-      Finans kuruluşları için dolandırıcılık ekosistemi istihbaratı
-    </p>
-    <p class="tagline" style="opacity:.72;font-size:.95rem;margin-top:-16px" data-lang="en">
-      Independent threat intelligence service, founded 2026.
-    </p>
-    <p class="tagline" style="opacity:.72;font-size:.95rem;margin-top:-16px" data-lang="kr">
-      2026년 설립된 독립 위협 인텔리전스 서비스.
-    </p>
-    <p class="tagline" style="opacity:.72;font-size:.95rem;margin-top:-16px" data-lang="tr">
-      2026 yılında kurulan bağımsız tehdit istihbaratı hizmeti.
-    </p>
+    <p class="subtitle">Specialized intelligence services — turning raw data into actionable insight</p>
   </div>
 </section>
 
-<!-- What We Do -->
-<section class="section">
-  <div class="section-inner">
-    <h2 class="section-title">
-      <span data-lang="en">What We Do</span>
-      <span data-lang="kr">서비스 소개</span>
-      <span data-lang="tr">Hizmetlerimiz</span>
-    </h2>
-    <div class="accent-bar"></div>
-    <p class="section-subtitle">
-      <span data-lang="en">Continuous monitoring of fraud infrastructure so you can act before losses occur</span>
-      <span data-lang="kr">피해 발생 전 선제 대응을 위한 사기 인프라 상시 모니터링</span>
-      <span data-lang="tr">Kayıplar oluşmadan harekete geçmeniz için dolandırıcılık altyapısının sürekli izlenmesi</span>
-    </p>
-    <div class="cards">
-      <div class="card">
-        <span class="card-icon" aria-hidden="true">&#x25C9;</span>
-        <h3>
-          <span data-lang="en">Ecosystem Monitoring</span>
-          <span data-lang="kr">생태계 모니터링</span>
-          <span data-lang="tr">Ekosistem İzleme</span>
-        </h3>
-        <p>
-          <span data-lang="en">Real-time tracking of vishing networks across Telegram channels, mapping operational structures and supply chains.</span>
-          <span data-lang="kr">텔레그램 채널 전반의 보이스피싱 네트워크 실시간 추적, 운영 구조 및 공급망 매핑.</span>
-          <span data-lang="tr">Telegram kanalları genelinde sesli dolandırıcılık ağlarının gerçek zamanlı takibi, operasyonel yapıların ve tedarik zincirlerinin haritalandırılması.</span>
-        </p>
+<section class="services">
+  <div class="services-inner">
+    <p class="services-heading">Our Intelligence Services</p>
+    <div class="service-cards">
+
+      <div class="service-card clickable" onclick="location.href='intelligence.html'">
+        <span class="service-icon" aria-hidden="true">&#x25C9;</span>
+        <h3>Fraud Intelligence</h3>
+        <p>Real-time monitoring of vishing networks, mule account flows, and cross-border fraud infrastructure across Telegram ecosystems.</p>
+        <a href="intelligence.html" class="service-link">Learn More</a>
       </div>
-      <div class="card">
-        <span class="card-icon" aria-hidden="true">&#x25CE;</span>
-        <h3>
-          <span data-lang="en">Financial Flow Mapping</span>
-          <span data-lang="kr">금융 흐름 매핑</span>
-          <span data-lang="tr">Finansal Akış Haritalama</span>
-        </h3>
-        <p>
-          <span data-lang="en">Cross-referencing bank accounts, crypto addresses, and phone numbers across channels to trace money flow paths and shared laundering infrastructure.</span>
-          <span data-lang="kr">채널 간 은행 계좌, 암호화폐 주소, 전화번호를 교차 분석하여 자금 흐름 경로 및 공유 세탁 인프라 추적.</span>
-          <span data-lang="tr">Kanallar arası banka hesapları, kripto adresleri ve telefon numaralarının çapraz referanslanarak para akışı yollarının ve paylaşılan aklama altyapısının izlenmesi.</span>
-        </p>
+
+      <div class="service-card clickable" onclick="location.href='manufacturing.html'">
+        <span class="service-icon" aria-hidden="true" style="background:#e07b39">&#x25A3;</span>
+        <h3>Manufacturing Intelligence</h3>
+        <p>Operational visibility for auto parts suppliers and OEMs. OEE dashboards, cycle time analysis, and custom KPI reporting from your existing data.</p>
+        <a href="manufacturing.html" class="service-link" style="background:#e07b39">Learn More</a>
       </div>
-      <div class="card">
-        <span class="card-icon" aria-hidden="true">&#x25D0;</span>
-        <h3>
-          <span data-lang="en">Cross-Market Correlation</span>
-          <span data-lang="kr">크로스마켓 상관분석</span>
-          <span data-lang="tr">Pazarlar Arası Korelasyon</span>
-        </h3>
-        <p>
-          <span data-lang="en">Detecting shared USDT addresses, domains, and operator handles across Korean, Turkish, and drug trafficking markets to reveal converging criminal infrastructure.</span>
-          <span data-lang="kr">한국, 터키, 마약 시장 간 공유 USDT 주소, 도메인, 운영자 핸들 탐지를 통한 범죄 인프라 수렴 식별.</span>
-          <span data-lang="tr">Yakınlaşan suç altyapısını ortaya koymak için Kore, Türkiye ve uyuşturucu kaçakçılığı pazarlarında paylaşılan USDT adresleri, alan adları ve operatör tutamaçlarının tespiti.</span>
-        </p>
+
+      <div class="service-card">
+        <span class="service-icon" aria-hidden="true" style="background:#6c757d">&#x25CE;</span>
+        <h3>AI Governance Intelligence</h3>
+        <p>Monitoring and assessment of AI systems for compliance, risk, and governance — ensuring your AI deployments meet regulatory and ethical standards.</p>
+        <span class="badge-soon">Coming Soon</span>
       </div>
-      <div class="card">
-        <span class="card-icon" aria-hidden="true">&#x25A3;</span>
-        <h3>
-          <span data-lang="en">Evidence-Grade Reporting</span>
-          <span data-lang="kr">증거 수준 보고서</span>
-          <span data-lang="tr">Kanıt Düzeyinde Raporlama</span>
-        </h3>
-        <p>
-          <span data-lang="en">Structured intelligence products with confidence scoring, audit trails, and legal reference mappings for each finding.</span>
-          <span data-lang="kr">각 발견 사항에 대한 신뢰도 점수, 감사 추적, 법적 참조를 포함한 구조화된 인텔리전스 제품.</span>
-          <span data-lang="tr">Her bulgu için güvenilirlik puanlaması, denetim izleri ve yasal referans eşleştirmelerini içeren yapılandırılmış istihbarat ürünleri.</span>
-        </p>
-      </div>
-      <div class="card">
-        <span class="card-icon" aria-hidden="true">&#x25C7;</span>
-        <h3>
-          <span data-lang="en">Early Warning Alerts</span>
-          <span data-lang="kr">조기 경보 알림</span>
-          <span data-lang="tr">Erken Uyarı Bildirimleri</span>
-        </h3>
-        <p>
-          <span data-lang="en">Delta-based threat detection between collection cycles: new entities, confidence shifts, activity bursts, and role escalations surfaced automatically.</span>
-          <span data-lang="kr">수집 주기 간 변화 기반 위협 탐지: 신규 엔티티, 신뢰도 변동, 활동 급증, 역할 변화를 자동 감지.</span>
-          <span data-lang="tr">Toplama döngüleri arasında delta bazlı tehdit tespiti: yeni varlıklar, güvenilirlik değişimleri, aktivite patlamaları ve rol yükselmeleri otomatik olarak tespit edilir.</span>
-        </p>
-      </div>
-      <div class="card">
-        <span class="card-icon" aria-hidden="true">&#x25E9;</span>
-        <h3>
-          <span data-lang="en">AI-Powered Analysis</span>
-          <span data-lang="kr">AI 기반 분석</span>
-          <span data-lang="tr">Yapay Zeka Destekli Analiz</span>
-        </h3>
-        <p>
-          <span data-lang="en">On-device language model inference for entity classification, network narrative generation, operator rebranding detection, and audience-tailored intelligence briefings with confidence calibration.</span>
-          <span data-lang="kr">엔티티 분류, 네트워크 서술 생성, 운영자 재브랜딩 탐지, 신뢰도 교정을 통한 대상별 맞춤 인텔리전스 브리핑을 위한 온디바이스 언어 모델 추론.</span>
-          <span data-lang="tr">Varlık sınıflandırması, ağ anlatısı oluşturma, operatör yeniden markalama tespiti ve güvenilirlik kalibrasyonu ile hedef kitleye özel istihbarat brifingleri için cihaz üzerinde dil modeli çıkarımı.</span>
-        </p>
-      </div>
-      <div class="card">
-        <span class="card-icon" aria-hidden="true">&#x25CB;</span>
-        <h3>
-          <span data-lang="en">Activity Heatmaps</span>
-          <span data-lang="kr">활동 히트맵</span>
-          <span data-lang="tr">Aktivite Isı Haritası</span>
-        </h3>
-        <p>
-          <span data-lang="en">Temporal posting patterns per channel with timezone estimation. Identifies when operators are active and detects cross-timezone coordination between domestic and offshore hubs.</span>
-          <span data-lang="kr">채널별 시간대 게시 패턴과 시간대 추정. 운영자 활동 시간 식별 및 국내-해외 허브 간 시간대 교차 조정 탐지.</span>
-          <span data-lang="tr">Kanal başına zaman dilimi tahminiyle zamansal yayın kalıpları. Operatörlerin ne zaman aktif olduğunu belirler ve yurtiçi-yurtdışı merkezler arası koordinasyonu tespit eder.</span>
-        </p>
-      </div>
-      <div class="card">
-        <span class="card-icon" aria-hidden="true">&#x25A0;</span>
-        <h3>
-          <span data-lang="en">Automated Indicator Feeds</span>
-          <span data-lang="kr">자동화 지표 피드</span>
-          <span data-lang="tr">Otomatik Gösterge Beslemeleri</span>
-        </h3>
-        <p>
-          <span data-lang="en">Machine-readable CSV watchlists, IOC feeds in MISP format, and bank-specific alert feeds grouped by institution -- ready for direct ingestion into your security stack.</span>
-          <span data-lang="kr">기관별 분류된 기계 판독 가능 CSV 감시 목록, MISP 형식 IOC 피드, 은행별 알림 피드 -- 보안 시스템에 바로 연동 가능.</span>
-          <span data-lang="tr">Kuruma göre gruplandırılmış makine tarafından okunabilir CSV izleme listeleri, MISP formatında IOC beslemeleri ve bankaya özel uyarı beslemeleri -- güvenlik altyapınıza doğrudan entegrasyona hazır.</span>
-        </p>
-      </div>
+
     </div>
   </div>
 </section>
 
-<!-- Coverage -->
-<section class="section" style="background:var(--card-bg)">
-  <div class="section-inner">
-    <h2 class="section-title">
-      <span data-lang="en">Coverage</span>
-      <span data-lang="kr">커버리지</span>
-      <span data-lang="tr">Kapsam</span>
-    </h2>
-    <div class="accent-bar"></div>
-    <p class="section-subtitle">
-      <span data-lang="en">Active intelligence collection across multiple fraud markets</span>
-      <span data-lang="kr">복수의 사기 시장에 대한 적극적 인텔리전스 수집</span>
-      <span data-lang="tr">Birden fazla dolandırıcılık pazarında aktif istihbarat toplama</span>
-    </p>
-    <div class="coverage-grid">
-      <div class="coverage-item">
-        <h3>
-          <span data-lang="en">South Korea</span>
-          <span data-lang="kr">대한민국</span>
-          <span data-lang="tr">Güney Kore</span>
-        </h3>
-        <p>
-          <span data-lang="en">Vishing, mule account trading, SIM fraud, cryptocurrency laundering. Cross-border operations spanning SEA.</span>
-          <span data-lang="kr">보이스피싱, 대포통장 거래, 유심 사기, 암호화폐 세탁. 동남아시아에 걸친 국경 간 조직.</span>
-          <span data-lang="tr">Sesli dolandırıcılık, sahte hesap ticareti, SIM dolandırıcılığı, kripto para aklama. Güneydoğu Asya'yı kapsayan sınır ötesi operasyonlar.</span>
-        </p>
-      </div>
-      <div class="coverage-item">
-        <h3>
-          <span data-lang="en">Turkey</span>
-          <span data-lang="kr">튀르키예</span>
-          <span data-lang="tr">Türkiye</span>
-        </h3>
-        <p>
-          <span data-lang="en">Voice phishing, bank fraud, identity theft, and mule recruitment networks.</span>
-          <span data-lang="kr">보이스피싱, 은행 사기, 신원 도용, 대포통장 모집 네트워크.</span>
-          <span data-lang="tr">Sesli dolandırıcılık, banka dolandırıcılığı, kimlik hırsızlığı ve kurye ağları.</span>
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- By The Numbers -->
-<section class="section stats-section">
-  <div class="section-inner">
-    <h2 class="section-title">
-      <span data-lang="en">By The Numbers</span>
-      <span data-lang="kr">주요 수치</span>
-      <span data-lang="tr">Rakamlarla</span>
-    </h2>
-    <div class="accent-bar"></div>
-    <p class="section-subtitle">
-      <span data-lang="en">Continuously updated from live intelligence collection</span>
-      <span data-lang="kr">실시간 인텔리전스 수집으로 지속 업데이트</span>
-      <span data-lang="tr">Canlı istihbarat toplamasından sürekli güncellenir</span>
-    </p>
-    <div class="stats-grid">
-      <div>
-        <div class="stat-number" id="stat-entities">1200+</div>
-        <div class="stat-label">
-          <span data-lang="en">Entities Tracked</span>
-          <span data-lang="kr">추적 중인 엔티티</span>
-          <span data-lang="tr">Takip Edilen Varlık</span>
-        </div>
-      </div>
-      <div>
-        <div class="stat-number" id="stat-clusters">65+</div>
-        <div class="stat-label">
-          <span data-lang="en">Clusters Mapped</span>
-          <span data-lang="kr">매핑된 클러스터</span>
-          <span data-lang="tr">Haritalandırılmış Küme</span>
-        </div>
-      </div>
-      <div>
-        <div class="stat-number" id="stat-members">2.6M+</div>
-        <div class="stat-label">
-          <span data-lang="en">Member Reach Monitored</span>
-          <span data-lang="kr">모니터링 중인 회원 도달 범위</span>
-          <span data-lang="tr">İzlenen Üye Erişimi</span>
-        </div>
-      </div>
-      <div>
-        <div class="stat-number" id="stat-markets">2</div>
-        <div class="stat-label">
-          <span data-lang="en">Active Markets</span>
-          <span data-lang="kr">활성 시장</span>
-          <span data-lang="tr">Aktif Pazar</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Contact -->
-<section class="section contact-section">
-  <div class="section-inner">
-    <h2 class="section-title">
-      <span data-lang="en">Get In Touch</span>
-      <span data-lang="kr">문의하기</span>
-      <span data-lang="tr">İletişim</span>
-    </h2>
-    <div class="accent-bar"></div>
-    <p class="section-subtitle">
-      <span data-lang="en">We specialize in Korean and Turkish language Telegram ecosystems -- infrastructure your current vendor isn't monitoring.</span>
-      <span data-lang="kr">한국어 및 터키어 텔레그램 생태계 전문 -- 기존 벤더가 모니터링하지 않는 인프라입니다.</span>
-      <span data-lang="tr">Korece ve Türkçe Telegram ekosistemleri konusunda uzmanız -- mevcut tedarikçinizin izlemediği altyapı.</span>
-    </p>
-    <a href="mailto:utku@opsightintel.com" class="contact-email">utku@opsightintel.com</a>
-  </div>
-</section>
-
-<!-- Footer -->
 <footer class="footer">
-  <span data-lang="en">&copy; 2026 Opsight Intelligence. All rights reserved.</span>
-  <span data-lang="kr">&copy; 2026 Opsight Intelligence. All rights reserved.</span>
-  <span data-lang="tr">&copy; 2026 Opsight Intelligence. Tüm hakları saklıdır.</span>
+  &copy; 2026 Opsight Intelligence. All rights reserved. &mdash; <a href="mailto:utku@opsightintel.com">utku@opsightintel.com</a>
 </footer>
-
-<script>
-(function(){
-  var toggle=document.getElementById("langToggle");
-  var html=document.documentElement;
-  var cycle=["en","ko","tr"];
-  var labels={"en":"KR","ko":"TR","tr":"EN"};
-  toggle.addEventListener("click",function(){
-    var cur=html.lang||"en";
-    var idx=cycle.indexOf(cur);
-    var next=cycle[(idx+1)%cycle.length];
-    html.lang=next;
-    toggle.textContent=labels[next];
-  });
-
-  // Load live stats from stats.json (generated by pipeline)
-  fetch("stats.json")
-    .then(function(r){return r.ok?r.json():null})
-    .then(function(d){
-      if(!d)return;
-      if(d.entities)document.getElementById("stat-entities").textContent=d.entities;
-      if(d.clusters)document.getElementById("stat-clusters").textContent=d.clusters;
-      if(d.members)document.getElementById("stat-members").textContent=d.members;
-      if(d.markets)document.getElementById("stat-markets").textContent=d.markets;
-    })
-    .catch(function(){});
-})();
-</script>
 
 </body>
 </html>

@@ -274,13 +274,13 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
       Finans kuruluşları için dolandırıcılık ekosistemi istihbaratı
     </p>
     <p class="tagline" style="opacity:.72;font-size:.95rem;margin-top:-16px" data-lang="en">
-      Independent threat intelligence service, founded 2026.
+      Trusted by a Korean government security agency for active threat monitoring.
     </p>
     <p class="tagline" style="opacity:.72;font-size:.95rem;margin-top:-16px" data-lang="kr">
-      2026년 설립된 독립 위협 인텔리전스 서비스.
+      한국 정부 보안 기관의 활성 위협 모니터링에 활용 중.
     </p>
     <p class="tagline" style="opacity:.72;font-size:.95rem;margin-top:-16px" data-lang="tr">
-      2026 yılında kurulan bağımsız tehdit istihbaratı hizmeti.
+      Aktif tehdit izleme kapsaminda bir Kore devlet guvenlik kurumu tarafindan kullanilmaktadir.
     </p>
   </div>
 </section>
@@ -465,9 +465,9 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
       <span data-lang="kr">실시간 인텔리전스 수집으로 지속 업데이트</span>
       <span data-lang="tr">Canlı istihbarat toplamasından sürekli güncellenir</span>
     </p>
-    <div class="stats-grid">
+    <div class="stats-grid" style="grid-template-columns:repeat(5,1fr);">
       <div>
-        <div class="stat-number" id="stat-entities">1200+</div>
+        <div class="stat-number" id="stat-entities">1180+</div>
         <div class="stat-label">
           <span data-lang="en">Entities Tracked</span>
           <span data-lang="kr">추적 중인 엔티티</span>
@@ -475,27 +475,35 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
         </div>
       </div>
       <div>
-        <div class="stat-number" id="stat-clusters">65+</div>
+        <div class="stat-number" id="stat-bank">30+</div>
+        <div class="stat-label">
+          <span data-lang="en">Bank Accounts (fraud)</span>
+          <span data-lang="kr">은행 계좌 (사기)</span>
+          <span data-lang="tr">Banka Hesabı (dolandırıcılık)</span>
+        </div>
+      </div>
+      <div>
+        <div class="stat-number" id="stat-phone">145+</div>
+        <div class="stat-label">
+          <span data-lang="en">Phone Numbers (active)</span>
+          <span data-lang="kr">전화번호 (활성)</span>
+          <span data-lang="tr">Telefon Numarası (aktif)</span>
+        </div>
+      </div>
+      <div>
+        <div class="stat-number" id="stat-crypto">175+</div>
+        <div class="stat-label">
+          <span data-lang="en">Crypto Addresses (laundering)</span>
+          <span data-lang="kr">암호화폐 주소 (세탁)</span>
+          <span data-lang="tr">Kripto Adresi (aklama)</span>
+        </div>
+      </div>
+      <div>
+        <div class="stat-number" id="stat-clusters">70+</div>
         <div class="stat-label">
           <span data-lang="en">Clusters Mapped</span>
           <span data-lang="kr">매핑된 클러스터</span>
           <span data-lang="tr">Haritalandırılmış Küme</span>
-        </div>
-      </div>
-      <div>
-        <div class="stat-number" id="stat-members">2.6M+</div>
-        <div class="stat-label">
-          <span data-lang="en">Member Reach Monitored</span>
-          <span data-lang="kr">모니터링 중인 회원 도달 범위</span>
-          <span data-lang="tr">İzlenen Üye Erişimi</span>
-        </div>
-      </div>
-      <div>
-        <div class="stat-number" id="stat-markets">2</div>
-        <div class="stat-label">
-          <span data-lang="en">Active Markets</span>
-          <span data-lang="kr">활성 시장</span>
-          <span data-lang="tr">Aktif Pazar</span>
         </div>
       </div>
     </div>
@@ -517,6 +525,11 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
       <span data-lang="tr">Korece ve Türkçe Telegram ekosistemleri konusunda uzmanız -- mevcut tedarikçinizin izlemediği altyapı.</span>
     </p>
     <a href="mailto:utku@opsightintel.com" class="contact-email">utku@opsightintel.com</a>
+    <p style="margin-top:16px;font-size:.9rem;color:var(--text-secondary);">
+      <span data-lang="en">First conversation starts with a sample intelligence report &mdash; no commitment required.</span>
+      <span data-lang="kr">첫 상담 시 샘플 인텔리전스 보고서를 제공합니다 &mdash; 별도의 약정 없이 받아보실 수 있습니다.</span>
+      <span data-lang="tr">İlk görüşmede örnek istihbarat raporu sunuyoruz &mdash; herhangi bir taahhüt gerektirmez.</span>
+    </p>
   </div>
 </section>
 
@@ -546,10 +559,11 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
     .then(function(r){return r.ok?r.json():null})
     .then(function(d){
       if(!d)return;
-      if(d.entities)document.getElementById("stat-entities").textContent=d.entities;
-      if(d.clusters)document.getElementById("stat-clusters").textContent=d.clusters;
-      if(d.members)document.getElementById("stat-members").textContent=d.members;
-      if(d.markets)document.getElementById("stat-markets").textContent=d.markets;
+      var fields=["entities","clusters","bank","phone","crypto","members","markets"];
+      fields.forEach(function(f){
+        var el=document.getElementById("stat-"+f);
+        if(el&&d[f])el.textContent=d[f];
+      });
     })
     .catch(function(){});
 })();

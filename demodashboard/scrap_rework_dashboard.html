@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrap and Rework Rate Dashboard - OpSight Intelligence</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; margin: 0; padding: 20px; color: #333; }
+        h1 { color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 10px; }
+        h2 { color: #283593; margin-top: 40px; }
+        .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
+        .card { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .card h4 { margin: 0 0 8px 0; color: #555; font-size: 0.9rem; }
+        .card .value { font-size: 2rem; font-weight: bold; }
+        .card .sub { font-size: 0.8rem; color: #888; margin-top: 4px; }
+        .green { color: #2e7d32; } .red { color: #c62828; } .blue { color: #1565c0; } .amber { color: #ef6c00; }
+        .chart-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0; }
+        .chart-full { margin: 20px 0; }
+        .summary-box { background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 5px solid #1565c0; margin: 16px 0; }
+        table, th, td { border-collapse: collapse; width: 100%; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background: #e8eaf6; color: #283593; font-weight: 600; }
+        .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.8rem; font-weight: 600; }
+        .badge-green { background: #c8e6c9; color: #2e7d32; }
+        .badge-red { background: #ffcdd2; color: #c62828; }
+        .badge-amber { background: #ffe0b2; color: #e65100; }
+        .footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #ddd; color: #999; font-size: 0.8rem; }
+        @media(max-width:768px){ body{padding:10px} h1{font-size:1.3rem} .card-grid{grid-template-columns:1fr} .chart-row{grid-template-columns:1fr} }
+    </style>
+</head>
+<body>
+
+<h1>Scrap &amp; Rework Rate Dashboard</h1>
+
+<!-- KPI Cards -->
+<div class="card-grid">
+    <div class="card">
+        <h4>First Pass Yield</h4>
+        <div class="value green">96.2%</div>
+        <div class="sub">Target: &ge;97.0%</div>
+    </div>
+    <div class="card">
+        <h4>Scrap Rate</h4>
+        <div class="value amber">2.1%</div>
+        <div class="sub">Target: &lt;1.5% &mdash; above target</div>
+    </div>
+    <div class="card">
+        <h4>Rework Rate</h4>
+        <div class="value amber">1.7%</div>
+        <div class="sub">Target: &lt;1.0% &mdash; above target</div>
+    </div>
+</div>
+
+<!-- Stacked Bar + Monthly Trend -->
+<h2>Scrap &amp; Rework by Production Line</h2>
+<div class="chart-full">
+    <div id="stackedBarChart" style="width:100%;height:400px;background:white;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);"></div>
+</div>
+
+<div class="chart-row">
+    <div>
+        <h2 style="margin-top:0;">Monthly Scrap Rate Trend</h2>
+        <div id="lineChart" style="width:100%;height:380px;background:white;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);"></div>
+    </div>
+    <div>
+        <h2 style="margin-top:0;">Defect Categories</h2>
+        <div id="donutChart" style="width:100%;height:380px;background:white;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);"></div>
+    </div>
+</div>
+
+<!-- Line-by-Line Detail Table -->
+<h2>Line-by-Line Detail</h2>
+<div style="background:white;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);overflow-x:auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>Line</th>
+                <th>Total Parts</th>
+                <th>Good Parts</th>
+                <th>Scrap</th>
+                <th>Rework</th>
+                <th>FPY %</th>
+                <th>Top Defect</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Line A</strong></td>
+                <td>12,480</td>
+                <td>12,155</td>
+                <td>162</td>
+                <td>163</td>
+                <td>97.4%</td>
+                <td>Flash</td>
+                <td><span class="badge badge-green">On Target</span></td>
+            </tr>
+            <tr>
+                <td><strong>Line B</strong></td>
+                <td>11,920</td>
+                <td>11,587</td>
+                <td>179</td>
+                <td>154</td>
+                <td>97.2%</td>
+                <td>Sink Marks</td>
+                <td><span class="badge badge-green">On Target</span></td>
+            </tr>
+            <tr>
+                <td><strong>Line C</strong></td>
+                <td>10,750</td>
+                <td>9,977</td>
+                <td>516</td>
+                <td>257</td>
+                <td>92.8%</td>
+                <td>Short Shot</td>
+                <td><span class="badge badge-red">Critical</span></td>
+            </tr>
+            <tr>
+                <td><strong>Line D</strong></td>
+                <td>13,100</td>
+                <td>12,770</td>
+                <td>172</td>
+                <td>158</td>
+                <td>97.5%</td>
+                <td>Weld Lines</td>
+                <td><span class="badge badge-green">On Target</span></td>
+            </tr>
+            <tr>
+                <td><strong>Line E</strong></td>
+                <td>11,350</td>
+                <td>10,942</td>
+                <td>227</td>
+                <td>181</td>
+                <td>96.4%</td>
+                <td>Warpage</td>
+                <td><span class="badge badge-amber">Watch</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- AI Summary -->
+<h2>AI Insight</h2>
+<div class="summary-box">
+    <strong>OpSight Intelligence Alert:</strong> Line C scrap rate spiked to 4.8% this week &mdash; 73% of rejects are short shots from cavities 3 and 7 in mold M-2240. Recommend cavity inspection and shot weight calibration.
+</div>
+
+<div class="footer">Demo dashboard &mdash; OpSight Manufacturing Intelligence | Data shown is simulated for demonstration</div>
+
+<script>
+// Stacked Bar Chart - Scrap + Rework by Production Line
+var lines = ['Line A', 'Line B', 'Line C', 'Line D', 'Line E'];
+var scrapRates = [1.3, 1.5, 4.8, 1.3, 2.0];
+var reworkRates = [1.3, 1.3, 2.4, 1.2, 1.6];
+
+var traceScrap = {
+    x: lines,
+    y: scrapRates,
+    name: 'Scrap %',
+    type: 'bar',
+    marker: { color: '#c62828' },
+    hovertemplate: '%{x}<br>Scrap: %{y}%<extra></extra>'
+};
+
+var traceRework = {
+    x: lines,
+    y: reworkRates,
+    name: 'Rework %',
+    type: 'bar',
+    marker: { color: '#ef6c00' },
+    hovertemplate: '%{x}<br>Rework: %{y}%<extra></extra>'
+};
+
+Plotly.newPlot('stackedBarChart', [traceScrap, traceRework], {
+    barmode: 'stack',
+    paper_bgcolor: 'white',
+    plot_bgcolor: 'white',
+    margin: { t: 30, b: 50, l: 50, r: 30 },
+    yaxis: { title: 'Rate (%)', gridcolor: '#eee' },
+    xaxis: { title: '' },
+    legend: { orientation: 'h', y: 1.12, x: 0.5, xanchor: 'center' },
+    shapes: [{
+        type: 'line',
+        x0: -0.5, x1: 4.5,
+        y0: 2.5, y1: 2.5,
+        line: { color: '#1565c0', width: 2, dash: 'dash' }
+    }],
+    annotations: [{
+        x: 4.5, y: 2.5,
+        text: 'Combined Target (2.5%)',
+        showarrow: false,
+        font: { size: 11, color: '#1565c0' },
+        xanchor: 'right',
+        yanchor: 'bottom'
+    }]
+}, { responsive: true });
+
+// Line Chart - Monthly Scrap Rate Trend
+var months = ['Nov 2025', 'Dec 2025', 'Jan 2026', 'Feb 2026', 'Mar 2026', 'Apr 2026'];
+var scrapTrend = [1.8, 1.6, 1.9, 2.3, 2.5, 2.1];
+var targetLine = [1.5, 1.5, 1.5, 1.5, 1.5, 1.5];
+
+var traceActual = {
+    x: months,
+    y: scrapTrend,
+    mode: 'lines+markers',
+    name: 'Scrap Rate',
+    line: { color: '#c62828', width: 3 },
+    marker: { size: 8 },
+    hovertemplate: '%{x}<br>Scrap Rate: %{y}%<extra></extra>'
+};
+
+var traceTarget = {
+    x: months,
+    y: targetLine,
+    mode: 'lines',
+    name: 'Target (1.5%)',
+    line: { color: '#1565c0', width: 2, dash: 'dash' },
+    hovertemplate: '%{x}<br>Target: %{y}%<extra></extra>'
+};
+
+Plotly.newPlot('lineChart', [traceActual, traceTarget], {
+    paper_bgcolor: 'white',
+    plot_bgcolor: 'white',
+    margin: { t: 20, b: 60, l: 50, r: 20 },
+    yaxis: { title: 'Scrap Rate (%)', gridcolor: '#eee', range: [0, 3.5] },
+    xaxis: { tickangle: -30 },
+    legend: { orientation: 'h', y: 1.15, x: 0.5, xanchor: 'center' }
+}, { responsive: true });
+
+// Donut Chart - Defect Categories
+var defectLabels = ['Short Shot', 'Flash', 'Sink Marks', 'Weld Lines', 'Warpage', 'Other'];
+var defectValues = [28, 22, 18, 15, 10, 7];
+var defectColors = ['#c62828', '#ef6c00', '#f9a825', '#1565c0', '#6a1b9a', '#78909c'];
+
+var traceDonut = {
+    labels: defectLabels,
+    values: defectValues,
+    type: 'pie',
+    hole: 0.45,
+    marker: { colors: defectColors },
+    textinfo: 'label+percent',
+    textposition: 'outside',
+    hovertemplate: '%{label}<br>%{value}% of defects<extra></extra>'
+};
+
+Plotly.newPlot('donutChart', [traceDonut], {
+    paper_bgcolor: 'white',
+    margin: { t: 20, b: 20, l: 20, r: 20 },
+    showlegend: false,
+    annotations: [{
+        text: 'Defect<br>Mix',
+        showarrow: false,
+        font: { size: 14, color: '#555' },
+        x: 0.5, y: 0.5
+    }]
+}, { responsive: true });
+</script>
+
+</body>
+</html>

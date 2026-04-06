@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpSight AgentGuard - Security Guardrails for AI Coding Assistants</title>
+<meta name="description" content="OpSight AgentGuard prevents AI coding assistants from accessing secrets, running destructive commands, or leaking sensitive data. Three-layer enforcement with full audit trail.">
+<meta property="og:title" content="OpSight AgentGuard — Security Guardrails for AI Coding Assistants">
+<meta property="og:description" content="Three-layer enforcement that prevents AI assistants from accessing secrets, running destructive commands, or leaking data.">
+<meta property="og:url" content="https://opsightintel.com/agentguard">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OpSight AgentGuard — AI Coding Security">
+<meta name="twitter:description" content="Deterministic guardrails for safe AI-assisted development. Open-source community edition available.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#1e3a5f;
+  --primary-light:#2d5a87;
+  --ag-accent:#2e7d6f;
+  --ag-accent-dark:#236358;
+  --text:#212529;
+  --text-secondary:#555;
+  --bg:#f8f9fa;
+  --card-bg:#fff;
+  --border:#e9ecef;
+}
+body{
+  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* --- Nav bar --- */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(30,58,95,.97);
+  backdrop-filter:blur(6px);
+  padding:0 24px;
+  display:flex;justify-content:center;gap:32px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+.nav a{
+  color:rgba(255,255,255,.8);
+  font-size:.9rem;font-weight:600;
+  padding:14px 0;
+  border-bottom:2px solid transparent;
+  transition:color .2s,border-color .2s;
+  text-decoration:none;
+}
+.nav a:hover,.nav a.active{color:#fff;border-bottom-color:#fff;text-decoration:none}
+
+/* --- Hero --- */
+.hero{
+  background:linear-gradient(135deg,#1a2f1a 0%,#2e4a3a 100%);
+  color:#fff;
+  padding:80px 24px 72px;
+  text-align:center;
+}
+.hero-inner{max-width:800px;margin:0 auto}
+.brand{
+  font-size:2.4rem;
+  font-weight:700;
+  letter-spacing:.22em;
+  margin-bottom:12px;
+}
+.brand-accent{color:var(--ag-accent)}
+.tagline{
+  font-size:1.15rem;
+  font-weight:400;
+  opacity:.88;
+  max-width:580px;
+  margin:0 auto 24px;
+  line-height:1.5;
+}
+.hero-cta{
+  display:inline-block;
+  background:var(--ag-accent);color:#fff;
+  padding:12px 32px;border-radius:6px;
+  font-size:1rem;font-weight:600;
+  transition:background .2s;
+  text-decoration:none;
+}
+.hero-cta:hover{background:var(--ag-accent-dark);text-decoration:none}
+
+/* --- Section shared --- */
+.section{padding:64px 24px}
+.section-inner{max-width:960px;margin:0 auto}
+.section-title{
+  font-size:1.5rem;
+  font-weight:700;
+  color:var(--ag-accent);
+  margin-bottom:8px;
+  text-align:center;
+}
+.section-subtitle{
+  color:var(--text-secondary);
+  text-align:center;
+  margin-bottom:40px;
+  font-size:.95rem;
+}
+
+/* --- Accent bar --- */
+.accent-bar{
+  height:3px;
+  background:var(--ag-accent);
+  width:60px;
+  margin:0 auto 24px;
+  border-radius:2px;
+}
+
+/* --- Cards --- */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+}
+.card{
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-left:3px solid var(--ag-accent);
+  border-radius:8px;
+  padding:28px 24px;
+  transition:box-shadow .2s;
+}
+.card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.card-icon{
+  font-size:1.6rem;
+  margin-bottom:12px;
+  display:block;
+  color:var(--ag-accent);
+}
+.card h3{
+  font-size:1.05rem;
+  font-weight:600;
+  margin-bottom:8px;
+  color:#1a1a1a;
+}
+.card p{
+  font-size:.9rem;
+  color:var(--text-secondary);
+  line-height:1.55;
+}
+
+/* --- Layers --- */
+.layers{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.layer{
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:32px 24px;
+  text-align:center;
+}
+.layer-number{
+  display:inline-block;
+  width:40px;height:40px;line-height:40px;
+  border-radius:50%;
+  background:var(--ag-accent);
+  color:#fff;
+  font-weight:700;
+  font-size:1.1rem;
+  margin-bottom:16px;
+}
+.layer h3{
+  font-size:1.05rem;
+  font-weight:700;
+  color:var(--primary);
+  margin-bottom:8px;
+}
+.layer p{
+  font-size:.88rem;
+  color:var(--text-secondary);
+  line-height:1.55;
+}
+
+/* --- Tiers --- */
+.tiers{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.tier{
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:32px 24px;
+  text-align:center;
+}
+.tier.featured{border:2px solid var(--ag-accent)}
+.tier-name{
+  font-size:1.2rem;
+  font-weight:700;
+  color:var(--primary);
+  margin-bottom:4px;
+}
+.tier-price{
+  font-size:1.5rem;
+  font-weight:700;
+  color:var(--ag-accent);
+  margin-bottom:16px;
+}
+.tier ul{
+  list-style:none;
+  text-align:left;
+  font-size:.88rem;
+  color:var(--text-secondary);
+  line-height:2;
+}
+.tier ul li::before{content:"\2713  ";color:var(--ag-accent);font-weight:700}
+.tier-cta{
+  display:inline-block;
+  margin-top:20px;
+  padding:10px 28px;
+  border-radius:6px;
+  font-size:.9rem;
+  font-weight:600;
+  transition:background .2s,color .2s;
+  text-decoration:none;
+}
+.tier-cta.primary{background:var(--ag-accent);color:#fff}
+.tier-cta.primary:hover{background:var(--ag-accent-dark);text-decoration:none}
+.tier-cta.outline{background:#fff;color:var(--ag-accent);border:1px solid var(--ag-accent)}
+.tier-cta.outline:hover{background:var(--ag-accent);color:#fff;text-decoration:none}
+
+/* --- Stats --- */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+  text-align:center;
+}
+.stat-number{
+  font-size:2rem;
+  font-weight:700;
+  color:var(--ag-accent);
+}
+.stat-label{
+  font-size:.85rem;
+  color:var(--text-secondary);
+  margin-top:4px;
+}
+
+/* --- Footer --- */
+.footer{
+  text-align:center;
+  padding:32px 24px;
+  color:#999;
+  font-size:.82rem;
+  border-top:1px solid var(--border);
+}
+
+/* --- Responsive --- */
+@media(max-width:600px){
+  .hero{padding:56px 20px 48px}
+  .brand{font-size:1.6rem;letter-spacing:.15em}
+  .tagline{font-size:1rem}
+  .section{padding:48px 20px}
+  .nav{gap:20px}
+  .layers,.tiers{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav">
+  <a href="index.html">Home</a>
+  <a href="intelligence.html">Fraud Intelligence</a>
+  <a href="manufacturing.html">Manufacturing</a>
+  <a href="agentguard.html" class="active">AgentGuard</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="brand">OPSIGHT <span class="brand-accent">AGENTGUARD</span></div>
+    <p class="tagline">
+      Security guardrails for AI coding assistants. Three-layer enforcement that prevents secret access, destructive commands, and data leakage.
+    </p>
+    <a href="https://github.com/opsight-intelligence/agentguard" class="hero-cta" target="_blank">Get Started Free</a>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section" style="background:var(--card-bg)">
+  <div class="section-inner">
+    <div class="stats">
+      <div>
+        <div class="stat-number">8</div>
+        <div class="stat-label">Hook Scripts</div>
+      </div>
+      <div>
+        <div class="stat-number">18</div>
+        <div class="stat-label">Behavioral Rules</div>
+      </div>
+      <div>
+        <div class="stat-number">70+</div>
+        <div class="stat-label">Deny Patterns</div>
+      </div>
+      <div>
+        <div class="stat-number">88</div>
+        <div class="stat-label">Automated Tests</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Problem -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">The Problem</h2>
+    <div class="accent-bar"></div>
+    <p class="section-subtitle">AI coding assistants have full access to your development environment</p>
+    <div class="cards">
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x26A0;</span>
+        <h3>Secret Exposure</h3>
+        <p>AI can read .env files, credentials.json, SSH keys, API tokens, and cloud configs. One wrong move and secrets end up in logs or commits.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x2718;</span>
+        <h3>Destructive Commands</h3>
+        <p>Nothing stops the AI from running rm -rf, DROP TABLE, git push --force, or chmod 777. One hallucination away from data loss.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x21C6;</span>
+        <h3>Data Exfiltration</h3>
+        <p>AI can curl files to external servers, base64-encode secrets, write to /tmp, or pipe data through netcat. No audit trail.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x2205;</span>
+        <h3>Zero Visibility</h3>
+        <p>Security teams have no way to see what the AI accessed, what commands it ran, or what it tried to do. Compliance auditors ask questions you cannot answer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Three Layers -->
+<section class="section" style="background:var(--card-bg)">
+  <div class="section-inner">
+    <h2 class="section-title">Three Enforcement Layers</h2>
+    <div class="accent-bar"></div>
+    <p class="section-subtitle">Defense in depth, not a single point of failure</p>
+    <div class="layers">
+      <div class="layer">
+        <div class="layer-number">1</div>
+        <h3>Behavioral Rules</h3>
+        <p>18 mandatory security rules the AI reads at session start. Covers sensitive files, credentials, SQL safety, XSS, PII, and scope boundaries.</p>
+      </div>
+      <div class="layer">
+        <div class="layer-number">2</div>
+        <h3>Permission Denials</h3>
+        <p>70+ hard deny rules in the permission system. Blocks file access and command execution before the AI even tries. No way to override.</p>
+      </div>
+      <div class="layer">
+        <div class="layer-number">3</div>
+        <h3>Hook Scripts</h3>
+        <p>8 deterministic bash scripts that intercept every tool call. Pattern-matched blocking with full incident logging. Exit code 2 = blocked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What Gets Blocked -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">What Gets Blocked</h2>
+    <div class="accent-bar"></div>
+    <div class="cards">
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x1F512;</span>
+        <h3>Sensitive Files</h3>
+        <p>.env, credentials, certificates, SSH keys, cloud configs, database connection strings, secrets directories.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x26D4;</span>
+        <h3>Dangerous Commands</h3>
+        <p>rm -rf, sudo, chmod 777, kill -9, disk ops, pipe-to-shell, DROP TABLE, TRUNCATE, DELETE without WHERE.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x1F6AB;</span>
+        <h3>Data Exfiltration</h3>
+        <p>curl/wget uploads, base64 encoding of secrets, /tmp writes, clipboard exfiltration, netcat channels.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x1F4E6;</span>
+        <h3>Untrusted Packages</h3>
+        <p>pip/npm/gem from git URLs, custom registries, or direct downloads. Standard registries allowed.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x1F310;</span>
+        <h3>Environment Escape</h3>
+        <p>SSH/SCP, docker run/exec/build, production env vars, destructive terraform/kubectl.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x1F464;</span>
+        <h3>PII Leakage</h3>
+        <p>Social Security Numbers, credit card numbers, Korean Resident Registration Numbers written into code.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="section" style="background:var(--card-bg)">
+  <div class="section-inner">
+    <h2 class="section-title">Plans</h2>
+    <div class="accent-bar"></div>
+    <p class="section-subtitle">Start free, upgrade when you need CI/CD enforcement and compliance</p>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-name">Community</div>
+        <div class="tier-price">Free</div>
+        <ul>
+          <li>8 hook scripts</li>
+          <li>18 behavioral rules</li>
+          <li>70+ deny patterns</li>
+          <li>3 slash commands</li>
+          <li>Incident logging</li>
+          <li>88 automated tests</li>
+          <li>Apache 2.0 license</li>
+        </ul>
+        <a href="https://github.com/opsight-intelligence/agentguard" class="tier-cta primary" target="_blank">Install Now</a>
+      </div>
+      <div class="tier featured">
+        <div class="tier-name">Pro</div>
+        <div class="tier-price">Contact Us</div>
+        <ul>
+          <li>Everything in Community</li>
+          <li>CI/CD agents (GitHub Actions)</li>
+          <li>LLM-powered code review (BYOK)</li>
+          <li>Auto-fix on PR</li>
+          <li>Vertical config packs</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="mailto:utku@opsightintel.com?subject=AgentGuard%20Pro" class="tier-cta primary">Get in Touch</a>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Enterprise</div>
+        <div class="tier-price">Contact Us</div>
+        <ul>
+          <li>Everything in Pro</li>
+          <li>Multi-repo deployment</li>
+          <li>Centralized incident dashboard</li>
+          <li>Compliance reporting</li>
+          <li>Custom vertical development</li>
+          <li>SLA support</li>
+        </ul>
+        <a href="mailto:utku@opsightintel.com?subject=AgentGuard%20Enterprise" class="tier-cta outline">Contact Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="text-align:center">
+  <div class="section-inner">
+    <h2 class="section-title">Ready to Secure Your AI Workflow?</h2>
+    <div class="accent-bar"></div>
+    <p class="section-subtitle">Install the community edition in 10 minutes. No signup required.</p>
+    <a href="https://github.com/opsight-intelligence/agentguard" class="hero-cta" target="_blank" style="margin-right:12px">GitHub</a>
+    <a href="mailto:utku@opsightintel.com?subject=AgentGuard%20Demo" class="hero-cta" style="background:var(--primary)">Request a Demo</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  &copy; 2026 Opsight Intelligence. All rights reserved. &mdash; <a href="mailto:utku@opsightintel.com">utku@opsightintel.com</a>
+</footer>
+
+</body>
+</html>

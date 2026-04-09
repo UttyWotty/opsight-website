@@ -8,7 +8,7 @@ Static website for **OpSight Intelligence** (opsightintel.com), hosted on GitHub
 
 - **Fraud Intelligence** (`intelligence.html`): fraud ecosystem monitoring for financial institutions (vishing networks, mule accounts, image OCR, REST API, evidence-grade reporting). 2 core markets (Korea, Turkey) plus custom client pipelines.
 - **Manufacturing Intelligence** (`manufacturing.html`): operational visibility for auto parts suppliers/OEMs (OEE dashboards, cycle time analysis)
-- **AgentGuard** (`agentguard.html`): AI coding assistant security guardrails. Three-layer enforcement, 157 tests, ISO 27001/EU AI Act/Korean AI Basic Act compliance. Free + Team ($15/dev/mo) + Business ($25/dev/mo) tiers.
+- **OpSentry** (`opsentry.html`): AI coding assistant security guardrails. Three-layer enforcement, 157 tests, ISO 27001/EU AI Act/Korean AI Basic Act compliance. Free + Team ($15/dev/mo) + Business ($25/dev/mo) tiers.
 
 ## Architecture
 
@@ -30,4 +30,4 @@ python3 -m http.server 8000
 
 `intelligence.html` supports English (`en`), Korean (`ko`), and Turkish (`tr`) via `data-lang` attributes toggled by switching `html[lang]`. Content for all languages lives in the same HTML file with CSS-driven visibility.
 
-`manufacturing.html` and `agentguard.html` are English-only. `index.html` is the homepage linking to all three verticals.
+`manufacturing.html` and `opsentry.html` are English-only. `index.html` is the homepage linking to all three verticals.

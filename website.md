@@ -68,7 +68,7 @@ Create a file called `sitemap.xml` in the root of your repo:
 </urlset>
 ```
 
-Adjust the URLs to match your actual page paths. If your pages are at different paths (like `/index.html#intelligence`), use those instead. Add the AgentGuard page when you create it.
+Adjust the URLs to match your actual page paths. If your pages are at different paths (like `/index.html#intelligence`), use those instead. Add the OpSentry page when you create it.
 
 Commit and push it.
 

@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OpSight AgentGuard - Security Guardrails for AI Coding Assistants</title>
-<meta name="description" content="OpSight AgentGuard — AI governance and security guardrails for coding assistants. Three-layer enforcement, full audit trail, compliance-ready for ISO 27001, EU AI Act, and Korean AI Basic Act.">
-<meta property="og:title" content="OpSight AgentGuard — Security Guardrails for AI Coding Assistants">
+<title>OpSentry - Security Guardrails for AI Coding Assistants</title>
+<meta name="description" content="OpSentry by OpSight Intelligence — AI governance and security guardrails for coding assistants. Three-layer enforcement, full audit trail, compliance-ready for ISO 27001, EU AI Act, and Korean AI Basic Act.">
+<meta property="og:title" content="OpSentry — Security Guardrails for AI Coding Assistants">
 <meta property="og:description" content="Three-layer enforcement that prevents AI assistants from accessing secrets, running destructive commands, or leaking data.">
-<meta property="og:url" content="https://opsightintel.com/agentguard">
+<meta property="og:url" content="https://opsightintel.com/opsentry">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="OpSight AgentGuard — AI Coding Security">
+<meta name="twitter:title" content="OpSentry — AI Coding Security">
 <meta name="twitter:description" content="Deterministic guardrails for safe AI-assisted development. Open-source community edition available.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -275,18 +275,20 @@ a:hover{text-decoration:underline}
   <a href="index.html">Home</a>
   <a href="intelligence.html">Fraud Intelligence</a>
   <a href="manufacturing.html">Manufacturing</a>
-  <a href="agentguard.html" class="active">AgentGuard</a>
+  <a href="opsentry.html" class="active">OpSentry</a>
 </nav>
 
 <!-- Hero -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="brand">OPSIGHT <span class="brand-accent">AGENTGUARD</span></div>
-    <p class="tagline" style="font-size:1.3rem;opacity:1;max-width:640px;font-weight:500;">
-      Your AI coding assistant can read your .env files, run rm&nbsp;-rf, and push to production. AgentGuard stops it.
+    <div class="brand">OPSIGHT <span class="brand-accent">OPSENTRY</span></div>
+    <p class="tagline" style="font-size:1.3rem;opacity:1;max-width:680px;font-weight:500;">
+      Claude Code has full access to your file system and shell. It can read your .env files, run rm&nbsp;-rf, and curl your data to external servers.
     </p>
-    <p style="opacity:.75;font-size:.95rem;margin-bottom:28px;max-width:560px;margin-left:auto;margin-right:auto;">AI governance and security in one framework. Three-layer deterministic enforcement, full audit trail, compliance-ready. 10-minute install.</p>
-    <a href="https://github.com/opsight-intelligence/agentguard" class="hero-cta" target="_blank">Get Started Free</a>
+    <p style="font-size:1.15rem;opacity:.95;margin-bottom:12px;max-width:580px;margin-left:auto;margin-right:auto;font-weight:600;">OpSentry stops it &mdash; deterministically, not just advisorily.</p>
+    <p style="opacity:.75;font-size:.95rem;margin-bottom:28px;max-width:580px;margin-left:auto;margin-right:auto;">The only guardrails framework built around Claude Code's native PreToolUse hook architecture. Three enforcement layers. Every tool call intercepted before execution.</p>
+    <a href="https://github.com/opsight-intelligence/opsentry" class="hero-cta" target="_blank" style="margin-right:12px">Install Free</a>
+    <a href="https://github.com/opsight-intelligence/opsentry" class="hero-cta" target="_blank" style="background:transparent;border:1px solid #fff;">View on GitHub</a>
   </div>
 </section>
 
@@ -307,7 +309,7 @@ a:hover{text-decoration:underline}
         <div class="stat-label">Deny Patterns</div>
       </div>
       <div>
-        <div class="stat-number">157</div>
+        <div class="stat-number">88</div>
         <div class="stat-label">Automated Tests</div>
       </div>
     </div>
@@ -319,7 +321,7 @@ a:hover{text-decoration:underline}
   <div class="section-inner" style="max-width:760px">
     <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:36px 32px;text-align:center;">
       <p style="font-size:1.05rem;line-height:1.7;color:var(--text);font-style:italic;margin-bottom:20px;">
-        "We deployed AgentGuard ahead of our ISO 27001 renewal. The auditor asked how we control AI assistant access to credentials and production systems — we showed the incident log and hook coverage. It closed the finding in one meeting."
+        "We deployed OpSentry ahead of our ISO 27001 renewal. The auditor asked how we control AI assistant access to credentials and production systems — we showed the incident log and hook coverage. It closed the finding in one meeting."
       </p>
       <p style="font-size:.9rem;color:var(--ag-accent);font-weight:600;margin-bottom:4px;">Solution Engineering Lead</p>
       <p style="font-size:.85rem;color:var(--text-secondary);">Korean manufacturing intelligence startup &mdash; ISO 27001 certified</p>
@@ -341,8 +343,25 @@ a:hover{text-decoration:underline}
   </div>
 </section>
 
-<!-- The Problem -->
+<!-- Why Deterministic Matters -->
 <section class="section">
+  <div class="section-inner" style="max-width:760px">
+    <h2 class="section-title">Why "Deterministic" Matters</h2>
+    <div class="accent-bar"></div>
+    <p style="font-size:1rem;color:var(--text-secondary);line-height:1.8;margin-bottom:16px;">
+      Most AI coding tools can only be guided with rules they may or may not follow. If the AI is confused, hallucinating, or misunderstands context &mdash; the rules don't enforce themselves.
+    </p>
+    <p style="font-size:1rem;color:var(--text-secondary);line-height:1.8;margin-bottom:16px;">
+      Claude Code is different. Its <strong style="color:var(--text)">PreToolUse hook architecture</strong> intercepts every tool call before execution. OpSentry's bash scripts inspect each call and block with exit code 2 if it matches a dangerous pattern.
+    </p>
+    <p style="font-size:1.05rem;color:var(--text);line-height:1.8;font-weight:600;">
+      The AI cannot bypass this. Exit code 2 is final. This is enforcement, not advice.
+    </p>
+  </div>
+</section>
+
+<!-- The Problem -->
+<section class="section" style="background:var(--card-bg)">
   <div class="section-inner">
     <h2 class="section-title">The Problem</h2>
     <div class="accent-bar"></div>
@@ -368,6 +387,11 @@ a:hover{text-decoration:underline}
         <h3>Zero Visibility</h3>
         <p>Security teams have no way to see what the AI accessed, what commands it ran, or what it tried to do. Compliance auditors ask questions you cannot answer.</p>
       </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x25CE;</span>
+        <h3>Zero Enforcement</h3>
+        <p>Other tools give the AI rules to follow. Rules are advisory. An AI that ignores them faces no consequence. OpSentry's hooks make "no" mean no &mdash; at the execution level.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -377,7 +401,7 @@ a:hover{text-decoration:underline}
   <div class="section-inner">
     <h2 class="section-title">Three Enforcement Layers</h2>
     <div class="accent-bar"></div>
-    <p class="section-subtitle">Defense in depth, not a single point of failure</p>
+    <p class="section-subtitle">Defense in depth, not a single point of failure. Layer 2 fires first, then Layer 3. Even if the AI ignores Layer 1 advisory rules, it cannot bypass deterministic enforcement.</p>
     <div class="layers">
       <div class="layer">
         <div class="layer-number">1</div>
@@ -413,12 +437,12 @@ a:hover{text-decoration:underline}
       <div class="card">
         <span class="card-icon" aria-hidden="true">&#x1F1EA;&#x1F1FA;</span>
         <h3>EU AI Act</h3>
-        <p>Enforcement began August 2025. High-risk AI systems require documented risk controls and human oversight. AgentGuard's three-layer enforcement and incident logging map directly to these requirements.</p>
+        <p>Enforcement began August 2025. High-risk AI systems require documented risk controls and human oversight. OpSentry's three-layer enforcement and incident logging map directly to these requirements.</p>
       </div>
       <div class="card">
         <span class="card-icon" aria-hidden="true">&#x1F4CB;</span>
         <h3>ISO 27001 / SOC 2</h3>
-        <p>Auditors want evidence that AI tools are governed. AgentGuard generates JSON incident logs, tracks every blocked action, and provides a verifiable control framework for certification renewals.</p>
+        <p>Auditors want evidence that AI tools are governed. OpSentry generates JSON incident logs, tracks every blocked action, and provides a verifiable control framework for certification renewals.</p>
       </div>
       <div class="card">
         <span class="card-icon" aria-hidden="true">&#x1F50D;</span>
@@ -488,7 +512,7 @@ a:hover{text-decoration:underline}
           <li>157 automated tests</li>
           <li>Apache 2.0 license</li>
         </ul>
-        <a href="https://github.com/opsight-intelligence/agentguard" class="tier-cta primary" target="_blank">Install Now</a>
+        <a href="https://github.com/opsight-intelligence/opsentry" class="tier-cta primary" target="_blank">Install Now</a>
       </div>
       <div class="tier featured">
         <div class="tier-name">Team</div>
@@ -503,7 +527,7 @@ a:hover{text-decoration:underline}
           <li>48-hour email support</li>
           <li>Up to 50 developers</li>
         </ul>
-        <a href="mailto:utku@opsightintel.com?subject=AgentGuard%20Team" class="tier-cta primary">Start Free Trial</a>
+        <a href="mailto:utku@opsightintel.com?subject=OpSentry%20Team" class="tier-cta primary">Start Free Trial</a>
       </div>
       <div class="tier">
         <div class="tier-name">Business</div>
@@ -517,20 +541,34 @@ a:hover{text-decoration:underline}
           <li>Custom rule development</li>
           <li>SLA support (24h response, 4h critical)</li>
         </ul>
-        <a href="mailto:utku@opsightintel.com?subject=AgentGuard%20Business" class="tier-cta outline">Contact Sales</a>
+        <a href="mailto:utku@opsightintel.com?subject=OpSentry%20Business" class="tier-cta outline">Contact Sales</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="section" style="text-align:center">
-  <div class="section-inner">
-    <h2 class="section-title">Know What Your AI Assistant Is Doing</h2>
+<!-- Other AI Tools -->
+<section class="section">
+  <div class="section-inner" style="max-width:760px">
+    <h2 class="section-title">Using Copilot, Cursor, or Windsurf?</h2>
     <div class="accent-bar"></div>
-    <p class="section-subtitle">Install the community edition in 10 minutes. No signup, no vendor lock-in, Apache 2.0.</p>
-    <a href="https://github.com/opsight-intelligence/agentguard" class="hero-cta" target="_blank" style="margin-right:12px">GitHub</a>
-    <a href="mailto:utku@opsightintel.com?subject=AgentGuard%20Demo" class="hero-cta" style="background:var(--primary)">Request a Demo</a>
+    <p style="font-size:1rem;color:var(--text-secondary);line-height:1.8;margin-bottom:16px;">
+      Full three-layer deterministic enforcement requires Claude Code's PreToolUse hook architecture.
+    </p>
+    <p style="font-size:1rem;color:var(--text-secondary);line-height:1.8;">
+      For teams using other AI coding assistants, OpSentry's advisory policy layer is available as a starting point. Full enforcement requires Claude Code.
+    </p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="text-align:center;background:var(--card-bg)">
+  <div class="section-inner">
+    <h2 class="section-title">Ready to Secure Your AI Workflow?</h2>
+    <div class="accent-bar"></div>
+    <p class="section-subtitle">Install the community edition in 2 minutes. No signup. No account. Just clone and run.</p>
+    <a href="https://github.com/opsight-intelligence/opsentry" class="hero-cta" target="_blank" style="margin-right:12px">GitHub &mdash; opsight-intelligence/opsentry</a>
+    <a href="mailto:utku@opsightintel.com?subject=OpSentry%20Enterprise" class="hero-cta" style="background:var(--primary)">Enterprise Teams</a>
   </div>
 </section>
 

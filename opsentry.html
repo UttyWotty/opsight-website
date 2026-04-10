@@ -309,7 +309,7 @@ a:hover{text-decoration:underline}
         <div class="stat-label">Deny Patterns</div>
       </div>
       <div>
-        <div class="stat-number">88</div>
+        <div class="stat-number">155</div>
         <div class="stat-label">Automated Tests</div>
       </div>
     </div>
@@ -417,6 +417,84 @@ a:hover{text-decoration:underline}
         <div class="layer-number">3</div>
         <h3>Hook Scripts</h3>
         <p>8 deterministic bash scripts that intercept every tool call. Pattern-matched blocking with full incident logging. Exit code 2 = blocked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Red Team Tested -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">Red Team Tested</h2>
+    <div class="accent-bar"></div>
+    <p class="section-subtitle">We attacked our own framework with 8 adversarial attack classes and documented every finding, patch, and residual risk. <a href="https://github.com/opsight-intelligence/opsentry/blob/main/docs/red-team-log.md" target="_blank">Read the full report.</a></p>
+    <div class="cards">
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x1F50D;</span>
+        <h3>8 Attacks, 8 Patched</h3>
+        <p>Indirect file reads, content blind spots, prompt injection, salami attacks, env poisoning, symlink redirection, persistence, and resource exhaustion &mdash; all patched with documented residuals.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x1F6E1;</span>
+        <h3>155 Automated Tests</h3>
+        <p>88 functional tests plus 67 adversarial red-team tests covering full-path evasion, no-space flags, encoding tools, PII format variants, pipe logic, and command chaining.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x1F4DD;</span>
+        <h3>Published Evidence</h3>
+        <p>No other AI agent security tool publishes adversarial testing evidence. Our red team log is public &mdash; attack vectors, patches, and honest residual risk assessments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- New Features -->
+<section class="section" style="background:var(--card-bg)">
+  <div class="section-inner">
+    <h2 class="section-title">Built for Production</h2>
+    <div class="accent-bar"></div>
+    <div class="cards">
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x2699;</span>
+        <h3>Protection Levels</h3>
+        <p>Choose <strong>strict</strong> (regulated environments), <strong>balanced</strong> (recommended default), or <strong>permissive</strong> (evaluation). One config field controls the entire security posture.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x1F512;</span>
+        <h3>Filesystem Immutability</h3>
+        <p>Guardrail files are locked with OS-level immutability flags (chflags uchg on macOS, chattr +i on Linux). Even root cannot modify them without explicitly unlocking.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">&#x1F4CA;</span>
+        <h3>Compliance Patrol</h3>
+        <p>Scheduled posture assessment scans for unexpected persistence, hook tampering (sha256 hash verification), and immutability drift. Runs on launchd (macOS) or cron (Linux).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Install Methods -->
+<section class="section">
+  <div class="section-inner" style="max-width:760px">
+    <h2 class="section-title">Install in 2 Minutes</h2>
+    <div class="accent-bar"></div>
+    <p class="section-subtitle">Four ways to get started</p>
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:28px 24px;font-family:monospace;font-size:.9rem;line-height:2.2;">
+      <div style="margin-bottom:16px;">
+        <div style="color:var(--ag-accent);font-weight:700;font-family:sans-serif;font-size:.85rem;margin-bottom:4px;">pip (recommended)</div>
+        <code>pip install opsentry && opsentry install</code>
+      </div>
+      <div style="margin-bottom:16px;">
+        <div style="color:var(--ag-accent);font-weight:700;font-family:sans-serif;font-size:.85rem;margin-bottom:4px;">Homebrew</div>
+        <code>brew tap opsight-intelligence/opsentry && brew install opsentry</code>
+      </div>
+      <div style="margin-bottom:16px;">
+        <div style="color:var(--ag-accent);font-weight:700;font-family:sans-serif;font-size:.85rem;margin-bottom:4px;">Git clone</div>
+        <code>git clone https://github.com/opsight-intelligence/opsentry && cd opsentry && ./install.sh</code>
+      </div>
+      <div>
+        <div style="color:var(--ag-accent);font-weight:700;font-family:sans-serif;font-size:.85rem;margin-bottom:4px;">GitHub Action (CI/CD)</div>
+        <code>uses: opsight-intelligence/opsentry-action@v1</code>
       </div>
     </div>
   </div>

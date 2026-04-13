@@ -283,10 +283,10 @@ a:hover{text-decoration:underline}
   <div class="hero-inner">
     <div class="brand">OPSIGHT <span class="brand-accent">OPSENTRY</span></div>
     <p class="tagline" style="font-size:1.3rem;opacity:1;max-width:680px;font-weight:500;">
-      Claude Code has full access to your file system and shell. It can read your .env files, run rm&nbsp;-rf, and curl your data to external servers.
+      Three layers of defense for AI coding agents &mdash; <strong>detect</strong>, <strong>prevent</strong>, and <strong>make dangerous actions architecturally impossible</strong>.
     </p>
-    <p style="font-size:1.15rem;opacity:.95;margin-bottom:12px;max-width:580px;margin-left:auto;margin-right:auto;font-weight:600;">OpSentry stops it &mdash; deterministically, not just advisorily.</p>
-    <p style="opacity:.75;font-size:.95rem;margin-bottom:28px;max-width:580px;margin-left:auto;margin-right:auto;">The only guardrails framework built around Claude Code's native PreToolUse hook architecture. Three enforcement layers. Every tool call intercepted before execution.</p>
+    <p style="font-size:1.15rem;opacity:.95;margin-bottom:12px;max-width:580px;margin-left:auto;margin-right:auto;font-weight:600;">Competitors match patterns. OpSentry makes entire attack classes impossible.</p>
+    <p style="opacity:.75;font-size:.95rem;margin-bottom:28px;max-width:580px;margin-left:auto;margin-right:auto;">Runtime guardrails. CI/CD composition analysis. OS-level sandbox profiles. From a single YAML config.</p>
     <a href="https://github.com/opsight-intelligence/opsentry" class="hero-cta" target="_blank" style="margin-right:12px">Install Free</a>
     <a href="https://github.com/opsight-intelligence/opsentry" class="hero-cta" target="_blank" style="background:transparent;border:1px solid #fff;">View on GitHub</a>
   </div>
@@ -297,20 +297,20 @@ a:hover{text-decoration:underline}
   <div class="section-inner">
     <div class="stats">
       <div>
+        <div class="stat-number">3</div>
+        <div class="stat-label">Defense Layers</div>
+      </div>
+      <div>
         <div class="stat-number">8</div>
-        <div class="stat-label">Hook Scripts</div>
+        <div class="stat-label">Red Team Attacks Defeated</div>
       </div>
       <div>
-        <div class="stat-number">18</div>
-        <div class="stat-label">Behavioral Rules</div>
-      </div>
-      <div>
-        <div class="stat-number">70+</div>
-        <div class="stat-label">Deny Patterns</div>
-      </div>
-      <div>
-        <div class="stat-number">168</div>
+        <div class="stat-number">203</div>
         <div class="stat-label">Automated Tests</div>
+      </div>
+      <div>
+        <div class="stat-number">3</div>
+        <div class="stat-label">Sandbox Platforms</div>
       </div>
     </div>
   </div>
@@ -396,27 +396,27 @@ a:hover{text-decoration:underline}
   </div>
 </section>
 
-<!-- Three Layers -->
+<!-- Three Defense Layers -->
 <section class="section" style="background:var(--card-bg)">
   <div class="section-inner">
-    <h2 class="section-title">Three Enforcement Layers</h2>
+    <h2 class="section-title">Three Layers of Defense</h2>
     <div class="accent-bar"></div>
-    <p class="section-subtitle">Defense in depth, not a single point of failure. Layer 2 fires first, then Layer 3. Even if the AI ignores Layer 1 advisory rules, it cannot bypass deterministic enforcement.</p>
+    <p class="section-subtitle">Each layer uses a different detection strategy. Defense in depth means an attacker must defeat all three &mdash; not just one.</p>
     <div class="layers">
       <div class="layer">
         <div class="layer-number">1</div>
-        <h3>Behavioral Rules</h3>
-        <p>18 mandatory security rules the AI reads at session start. Covers sensitive files, credentials, SQL safety, XSS, PII, and scope boundaries.</p>
+        <h3>Detect &mdash; Runtime Guardrails</h3>
+        <p>8 hook scripts + 18 behavioral rules + 70+ permission denials. Pre-execution pattern matching blocks known attack vectors before they run. Battle-tested against 8 red team attacks.</p>
       </div>
       <div class="layer">
         <div class="layer-number">2</div>
-        <h3>Permission Denials</h3>
-        <p>70+ hard deny rules in the permission system. Blocks file access and command execution before the AI even tries. No way to override.</p>
+        <h3>Prevent &mdash; CI/CD Analysis</h3>
+        <p>Cross-file AST composition analysis at PR time. Import-graph-aware &mdash; catches exfiltration patterns assembled across multiple files. Auto-fix and merge gating.</p>
       </div>
       <div class="layer">
         <div class="layer-number">3</div>
-        <h3>Hook Scripts</h3>
-        <p>8 deterministic bash scripts that intercept every tool call. Pattern-matched blocking with full incident logging. Exit code 2 = blocked.</p>
+        <h3>Make Impossible &mdash; Sandbox Profiles</h3>
+        <p>Generated platform-specific sandbox configs (macOS sandbox-exec, Linux bubblewrap, Docker). Dangerous actions are denied at the OS kernel level &mdash; not detected, removed.</p>
       </div>
     </div>
   </div>
@@ -432,12 +432,12 @@ a:hover{text-decoration:underline}
       <div class="card">
         <span class="card-icon" aria-hidden="true">&#x1F50D;</span>
         <h3>8 Attacks, 8 Patched</h3>
-        <p>Indirect file reads, content blind spots, prompt injection, salami attacks, env poisoning, symlink redirection, persistence, and resource exhaustion &mdash; all patched with documented residuals.</p>
+        <p>Indirect file reads, content blind spots, prompt injection, salami attacks, env poisoning, symlink redirection, persistence, and resource exhaustion &mdash; all patched. Sandbox profiles close every attack class at the OS level.</p>
       </div>
       <div class="card">
         <span class="card-icon" aria-hidden="true">&#x1F6E1;</span>
-        <h3>168 Automated Tests</h3>
-        <p>101 functional tests plus 67 adversarial red-team tests covering full-path evasion, no-space flags, encoding tools, PII format variants, pipe logic, command chaining, and symlink-based bypass attempts against the guardrails directory.</p>
+        <h3>203 Automated Tests</h3>
+        <p>168 hook tests plus 42 cross-file composition tests plus 23 network exposure tests. Covers full-path evasion, encoding, PII formats, pipe logic, symlink bypass, and import-graph-aware exfiltration detection.</p>
       </div>
       <div class="card">
         <span class="card-icon" aria-hidden="true">&#x1F4DD;</span>
@@ -598,6 +598,8 @@ a:hover{text-decoration:underline}
         <ul>
           <li>Everything in Community</li>
           <li style="font-weight:600;color:var(--text)">CI/CD agents &mdash; blocks the PR before it merges, not after</li>
+          <li style="font-weight:600;color:var(--text)">Sandbox profile generator (macOS, Linux, Docker)</li>
+          <li>Cross-file exfiltration detection (AST)</li>
           <li>LLM-powered code review (bring your own key)</li>
           <li>Auto-fix on PR</li>
           <li>Compliance mapping (ISO 27001, EU AI Act, Korean AI Basic Act)</li>
@@ -612,6 +614,7 @@ a:hover{text-decoration:underline}
         <div class="tier-price">$25<span style="font-size:.6em;font-weight:400;color:var(--text-secondary)">/dev/mo</span></div>
         <ul>
           <li>Everything in Team</li>
+          <li style="font-weight:600;color:var(--text)">Sandbox profiles + centralized policy push</li>
           <li>Centralized incident dashboard across teams</li>
           <li>Team compliance view &amp; rule analytics</li>
           <li style="font-weight:600;color:var(--text)">Compliance reports (PDF/CSV) &mdash; evidence packages for auditors</li>
